@@ -87,8 +87,8 @@ function selectExercise(id, { scrollToExercise = true } = {}) {
   exerciseStrip.querySelectorAll("button").forEach((button) => {
     button.setAttribute("aria-pressed", String(button.dataset.exercise === id));
   });
-  if (scrollToExercise) document.querySelector(`#exercise-${id}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
   codeMirrorEditor?.focus();
+  if (scrollToExercise) document.querySelector(`#exercise-${id}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 EXERCISES.forEach((exercise) => {
