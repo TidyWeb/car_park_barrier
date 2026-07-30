@@ -23,13 +23,18 @@ let currentExercise = "01";
 if (railName) railName.textContent = "Conditionals";
 function setStatus(message, state = "") { status.textContent = message; status.classList.remove("running", "error"); if (state) status.classList.add(state); }
 function editorValue() { return codeMirrorEditor ? codeMirrorEditor.getValue() : editor.value; }
-function setEditorValue(value) { if (codeMirrorEditor) codeMirrorEditor.setValue(value); else editor.value = value; }
+function setEditorValue(value) { if (codeMirrorEditor) { codeMirrorEditor.setValue(value); const lastLine = codeMirrorEditor.lastLine(); codeMirrorEditor.setCursor({ line: lastLine, ch: codeMirrorEditor.getLine(lastLine).length }); } else { editor.value = value; editor.selectionStart = editor.selectionEnd = value.length; } }
+function draftStorageKey(id) { return `supplementary-sheets:${location.pathname}:exercise-${id}`; }
+function readDraft(id) { try { return window.localStorage.getItem(draftStorageKey(id)); } catch { return null; } }
+function saveDraft(id, value) { try { window.localStorage.setItem(draftStorageKey(id), value); } catch { /* Starter code remains available if browser storage cannot be used. */ } }
+function exerciseCode(exercise) { const draft = readDraft(exercise.id); return draft === null ? exercise.code : draft; }
 function clearConsole(message) { consoleOutput.classList.remove("error-output"); consoleOutput.textContent = message; setStatus("Ready"); }
 function selectExercise(id, { scrollToExercise = true } = {}) {
   const exercise = EXERCISES.find((item) => item.id === id);
   if (!exercise) return;
+  if (currentExercise !== id) saveDraft(currentExercise, editorValue());
   currentExercise = id;
-  setEditorValue(exercise.code);
+  setEditorValue(exerciseCode(exercise));
   clearConsole(exercise.rest);
   exerciseStrip.querySelectorAll("button").forEach((button) => button.setAttribute("aria-pressed", String(button.dataset.exercise === id)));
   if (scrollToExercise) document.querySelector(`#exercise-${id}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -56,6 +61,6 @@ window.addEventListener("python-editor-run", runCode);
 runButton.addEventListener("click", runCode);
 clearButton.addEventListener("click", () => clearConsole("Console cleared."));
 selectExercise(currentExercise, { scrollToExercise: false });
-import("../assets/codemirror-editor.js?v=supplementary-sheets-20260729-plain-enter").then(async ({ createPythonEditor }) => { codeMirrorEditor = await createPythonEditor(editor); setEditorValue(EXERCISES.find((item) => item.id === currentExercise).code); }).catch(() => {});
+import("../assets/codemirror-editor.js?v=supplementary-sheets-20260729-plain-enter").then(async ({ createPythonEditor }) => { codeMirrorEditor = await createPythonEditor(editor); setEditorValue(exerciseCode(EXERCISES.find((item) => item.id === currentExercise))); }).catch(() => {});
 runButton.disabled = true; setStatus("Preparing Python", "running");
 window.browserPython.ready.then(() => { runnerAvailable = true; runButton.disabled = false; setStatus("Ready"); }).catch(() => setStatus("Python unavailable", "error"));

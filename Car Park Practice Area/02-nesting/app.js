@@ -18,7 +18,7 @@ function setStatus(message, state = "") {
   status.className = `runner-status ${state}`.trim();
 }
 function editorValue() { return codeMirrorEditor ? codeMirrorEditor.getValue() : editor.value; }
-function setEditorValue(value) { if (codeMirrorEditor) codeMirrorEditor.setValue(value); else editor.value = value; }
+function setEditorValue(value) { if (codeMirrorEditor) { codeMirrorEditor.setValue(value); const lastLine = codeMirrorEditor.lastLine(); codeMirrorEditor.setCursor({ line: lastLine, ch: codeMirrorEditor.getLine(lastLine).length }); } else { editor.value = value; editor.selectionStart = editor.selectionEnd = value.length; } }
 function restoreCode() { setEditorValue(localStorage.getItem(storageKey) ?? STARTER_CODE); }
 function saveCode() { localStorage.setItem(storageKey, editorValue()); }
 
