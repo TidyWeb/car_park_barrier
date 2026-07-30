@@ -8,15 +8,25 @@
   <link rel="stylesheet" href="assets/drills.css?v=barrier-bottom-group-20260729">
   <style>
     .sheet-pending{display:flex;gap:.8rem;align-items:center;padding:.64rem .4rem;border-bottom:1px solid rgba(255,255,255,.1);color:#8fa2ad;font-size:.84rem}.sheet-pending span{min-width:1.35rem;color:#6e8490;font:700 .72rem var(--mono)}
-    .drill-reading .home-introduction{max-width:44rem;margin:0 0 4.5rem;color:var(--ink);font:1rem/1.68 system-ui,"Liberation Sans",Arial,sans-serif}
+    .drill-reading .home-intro-grid{display:grid;grid-template-columns:minmax(0,44rem) minmax(12rem,1fr);gap:4rem;align-items:start;margin-bottom:4.5rem}
+    .drill-reading .home-introduction{max-width:44rem;margin:0;color:var(--ink);font:1rem/1.68 system-ui,"Liberation Sans",Arial,sans-serif}
     .drill-reading .home-introduction p{margin:0 0 1.35rem}
     .drill-reading .home-introduction p:last-child{margin-bottom:0}
+    .curly-f-feature{display:grid;place-items:center;min-height:30rem;padding-top:2rem}
+    .curly-f-feature img{display:block;width:min(100%,15rem);height:auto;max-height:28rem;object-fit:contain;object-position:center;opacity:.88;transform:translateX(2rem)}
+    .drill-reading .rail .brand-mark--curly-f{display:flex;align-items:center;justify-content:space-between;gap:0;overflow:hidden;padding:0 .08rem;color:#fff}
+    .brand-mark--curly-f .brand-brace{display:block;color:#fff;font:400 2rem/.72 var(--serif);transform:scaleY(1.05)}
+    .brand-mark--curly-f .brand-brace--left{margin-left:-.12rem}
+    .brand-mark--curly-f .brand-brace--right{margin-right:-.12rem}
+    .brand-mark--curly-f img{display:block;width:.72rem;height:1.5rem;object-fit:contain;filter:invert(1);opacity:1}
+    @media(max-width:1100px){.drill-reading .home-intro-grid{grid-template-columns:minmax(0,1fr) 10rem;gap:2.5rem}.curly-f-feature{min-height:20rem;padding-top:1rem}.curly-f-feature img{width:min(100%,9rem)}}
+    @media(max-width:720px){.drill-reading .home-intro-grid{grid-template-columns:1fr;gap:2rem;margin-bottom:3rem}.curly-f-feature{order:-1;justify-content:start;min-height:0;padding:0}.curly-f-feature img{width:6rem;max-height:8rem;transform:none}}
   </style>
 </head>
 <body class="drill-reading">
   <a class="skip" href="#sheets">Skip to the sheets</a>
   <aside class="rail">
-    <div class="brand"><div class="brand-mark" aria-hidden="true">{ }</div><div><p class="eyebrow">Python practice</p><p class="brand-name">Supplementary Sheets</p></div></div>
+    <div class="brand"><div class="brand-mark brand-mark--curly-f" aria-hidden="true"><span class="brand-brace brand-brace--left">{</span><img src="assets/curly-f-central.png" alt=""><span class="brand-brace brand-brace--right">}</span></div><div><p class="eyebrow">Python practice</p><p class="brand-name">Supplementary Sheets</p></div></div>
     <nav class="course-nav" aria-label="Supplementary sheets"><p>Sheets</p><ol>
       <li><a href="01-f-prints/index.html"><span>01</span>F-Prints</a></li>
       <li><a href="02-building/index.html"><span>02</span>Building</a></li>
@@ -24,7 +34,7 @@
       <li><a href="04-conditionals/index.html"><span>04</span>Conditionals</a></li>
       <li><a href="05-loops/index.html"><span>05</span>Loops</a></li>
     </ol></nav>
-    <a class="rail-capstone" href="../../Car%20Park%20Practice%20Area/01-flow-control/" aria-label="Open the full Car Park Barrier project">
+    <a class="rail-capstone" href="../../Car%20Park%20Practice%20Area/02-nesting/" aria-label="Open the full Car Park Barrier project">
       <span class="barrier-project-label">The full project</span>
       <span class="barrier-stage" aria-hidden="true"><span class="barrier-post"></span><span class="barrier-lamp"></span><span class="barrier-arm"></span></span>
       <span class="barrier-road" aria-hidden="true"><img src="assets/car-park-road.png" alt=""></span>
@@ -33,11 +43,17 @@
   </aside>
   <main>
     <article id="sheets" class="lesson">
-      <div class="lesson-head"><div class="brand-mark" aria-hidden="true">01–05</div><div><p class="lesson-no">PYTHON · SUPPLEMENTARY PRACTICE</p><h1 class="intro-title"><span>Build the small</span><em>moves first</em></h1></div></div>
-      <div class="home-introduction">
-        <p>You may look at this and think, what? He's starting with printing? What kind of tutorial starts with printing? Printing comes at the end, doesn't it? Well...</p>
-        <p>I started with f-prints because that was where I was struggling. Print looks trivial until you're pulling four things into one line and half of them aren't text, and then I could never remember how it went together. F-strings gave me a way in. You build the line yourself, you run it, and it does exactly what you told it to or it fails — and if you've only typed one line, you can see straight away which bit was wrong. Nothing else on these sheets gets checked any other way.</p>
-        <p>The rest of them are the other things I struggled with. There's no clever method here: I did them over and over, fifteen minutes one evening, half an hour the next, the way a pianist runs scales. They step up to a big final exercise at the end, the same shape as the ones on the course. I wrote that big exercise, then found I couldn't do it without asking an AI for help — which is fair enough, but it also told me I didn't really know what I was doing, and I didn't much like the feeling. So: pick them up, use them however suits you. They helped me. I hope they help you.</p>
+      <div class="home-intro-grid">
+        <div>
+          <div class="lesson-head"><div class="brand-mark" aria-hidden="true">01–05</div><div><p class="lesson-no">PYTHON · SUPPLEMENTARY PRACTICE</p><h1 class="intro-title"><span>Build the small</span><em>moves first —</em> <span>curly Fs</span></h1></div></div>
+          <div class="home-introduction">
+            <p>You may look at this and think, what? He's starting with printing? What kind of tutorial starts with printing? Printing comes at the end, doesn't it? Well...</p>
+            <p>I started with f-prints because that was where I was struggling. Print looks trivial until you're pulling four things into one line and half of them aren't text, and then I could never remember how it went together. F-strings gave me a way in — that way in was always thinking of them as curly Fs. You build the line yourself, you run it, and it does exactly what you told it to or it fails — and if you've only typed one line, you can see straight away which bit was wrong. Nothing else on these sheets gets checked any other way.</p>
+            <p>So don't think of these as f-strings or f-prints. Think of the <code>f</code> as a signal to look for curly braces: the values you insert go inside <code>{ }</code>.</p>
+            <p>The rest of them are the other things I struggled with. There's no clever method here: I did them over and over, fifteen minutes one evening, half an hour the next, the way a pianist runs scales. They step up to a big final exercise at the end, the same shape as the ones on the course. I wrote that big exercise, then found I couldn't do it without asking an AI for help — which is fair enough, but it also told me I didn't really know what I was doing, and I didn't much like the feeling. So: pick them up, use them however suits you. They helped me. I hope they help you.</p>
+          </div>
+        </div>
+        <div class="curly-f-feature" aria-hidden="true"><img src="assets/curly-f-central.png" alt=""></div>
       </div>
       <p class="lede">These sheets sit beside the main work. Each one slows down a small piece of Python so you can type it, run it, and return to it when you need to.</p>
       <div class="guide-grid">
