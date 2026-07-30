@@ -1,0 +1,791 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="A short Python for-loops practice sheet."
+    />
+    <title>Loops — Supplementary Sheet</title>
+    <link rel="stylesheet" href="../assets/drills.css?v=barrier-bottom-group-20260729" />
+    <link
+      rel="stylesheet"
+      href="../assets/workbench.css?v=supplementary-sheets-20260729"
+    />
+    <style>
+      .sheet-pending {
+        display: flex;
+        gap: 0.8rem;
+        align-items: center;
+        padding: 0.64rem 0.4rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        color: #8fa2ad;
+        font-size: 0.84rem;
+      }
+      .sheet-pending span {
+        min-width: 1.35rem;
+        color: #6e8490;
+        font: 700 0.72rem var(--mono);
+      }
+      .exercise-strip {
+        display: flex;
+        overflow-x: auto;
+        background: #0e181e;
+      }
+      .exercise-strip button {
+        min-width: 3.1rem;
+        border: 0;
+        border-right: 1px solid rgba(255, 255, 255, 0.12);
+        padding: 0.7rem 1rem;
+        color: #b9c7cf;
+        background: transparent;
+        font: 0.78rem var(--mono);
+        cursor: pointer;
+      }
+      .exercise-strip button[aria-pressed="true"] {
+        color: #fff;
+        background: #1b333f;
+        box-shadow:
+          inset 0 2px 0 var(--amber),
+          inset 0 -2px 0 rgba(143, 185, 203, 0.35);
+        font-weight: 800;
+      }
+      .exercise-strip button:hover,
+      .exercise-strip button:focus-visible {
+        color: #fff;
+        background: #17242d;
+      }
+      .exercise-strip button[aria-pressed="true"]:hover,
+      .exercise-strip button[aria-pressed="true"]:focus-visible {
+        background: #244451;
+      }
+      .rail .course-nav.hints p code {
+        color: #8fb9cb;
+        background: rgba(143, 185, 203, 0.1);
+      }
+      .solution {
+        margin-top: 1.1rem;
+        padding: 0 1.1rem 1.1rem;
+        border-left: 4px solid var(--green);
+        background: var(--mint);
+      }
+      .solution summary {
+        padding: 0.9rem 0;
+        color: var(--green);
+        font: 800 0.72rem var(--mono);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+      .solution .code-block {
+        margin: 0.25rem 0 0;
+      }
+      .solution .code-block code {
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+      }
+      .exercise-hints {
+        margin-top: 1rem;
+        padding: 0.7rem 1rem;
+        border-left: 4px solid var(--amber);
+        background: var(--paper);
+      }
+      .exercise-hints > summary {
+        color: var(--ink);
+        font: 800 0.72rem var(--mono);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+      .exercise-hints p {
+        margin: 0.5rem 0 0;
+      }
+      .route {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.25rem 0.5rem;
+        font: 800 0.78rem var(--mono);
+        line-height: 1.65;
+        color: var(--ink);
+      }
+      .route-step {
+        white-space: nowrap;
+      }
+      .route-arrow {
+        margin-left: 0.25rem;
+        color: var(--green);
+      }
+      .punctuation {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 0.3rem 0.8rem;
+        font: 700 0.82rem var(--mono);
+      }
+      .punctuation code {
+        color: var(--green);
+      }
+      .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip" href="#sheet">Skip to the sheet</a>
+    <aside class="rail">
+      <div class="brand">
+        <a
+          class="brand-home brand-mark"
+          href="../index.html"
+          aria-label="Supplementary sheets home"
+          >&#9656;</a
+        >
+        <div>
+          <p class="eyebrow">Python · supplementary sheet</p>
+          <p class="brand-name">Loops</p>
+        </div>
+      </div>
+      <nav class="course-nav" aria-label="Supplementary sheets">
+        <p>Sheets</p>
+        <ol>
+          <li>
+            <a href="../01-f-prints/index.html"><span>01</span>F-Prints</a>
+          </li>
+          <li>
+            <a href="../02-building/index.html"><span>02</span>Building</a>
+          </li>
+          <li>
+            <a href="../03-reaching-in/index.html"
+              ><span>03</span>Reaching In</a
+            >
+          </li>
+          <li>
+            <a href="../04-conditionals/index.html"
+              ><span>04</span>Conditionals</a
+            >
+          </li>
+          <li>
+            <a href="index.html" aria-current="page"><span>05</span>Loops</a>
+          </li>
+        </ol>
+      </nav>
+      <nav class="course-nav hints" aria-label="Loops reference">
+        <p>Reference</p>
+        <details>
+          <summary>One item per pass</summary>
+          <p>
+            The indented lines run once for every item. The loop variable is the
+            one item currently in hand.
+          </p>
+        </details>
+        <details>
+          <summary>Name the two layers</summary>
+          <p>
+            Use a plural name for the collection and a singular name for the
+            loop variable: <code>vehicles</code> and <code>vehicle</code>.
+          </p>
+        </details>
+        <details>
+          <summary>A running total</summary>
+          <p>
+            Set it up before the loop, add to it inside, then read it after the
+            loop.
+          </p>
+        </details>
+        <details>
+          <summary>Keep a pair together</summary>
+          <p>
+            When a value and the item it belongs to change together, replace
+            both in the same <code>if</code>.
+          </p>
+        </details>
+        <details>
+          <summary>A loop inside a loop</summary>
+          <p>
+            The inner loop finishes completely before the outer loop moves to
+            its next item.
+          </p>
+        </details>
+        <details>
+          <summary>One total or many?</summary>
+          <p>
+            A total for every vehicle starts inside the outer loop. A total for
+            all vehicles starts before it.
+          </p>
+        </details>
+      </nav>
+    <a class="rail-capstone" href="../../../Car%20Park%20Practice%20Area/02-nesting/" aria-label="Open the full Car Park Barrier project">
+      <span class="barrier-project-label">The full project</span>
+      <span class="barrier-stage" aria-hidden="true"><span class="barrier-post"></span><span class="barrier-lamp"></span><span class="barrier-arm"></span></span>
+      <span class="barrier-road" aria-hidden="true"><img src="../assets/car-park-road.png" alt=""></span>
+    </a>
+      <a
+        class="rail-tidy"
+        href="https://github.com/TidyWeb"
+        target="_blank"
+        rel="noopener"
+        ><img src="../assets/tidyweb_logo.png" alt="" /><span
+          ><strong>TidyWeb</strong
+          ><small>View this project on GitHub</small></span
+        ></a
+      >
+    </aside>
+    <main>
+      <div class="shell">
+        <article id="sheet" class="drill-reading">
+          <section class="lesson">
+            <div class="lesson-head">
+              <div class="brand-mark" aria-hidden="true">↻</div>
+              <div>
+                <p class="lesson-no">SHEET 05 · SCALES</p>
+                <h1 class="intro-title">
+                  <span>Doing the same</span><em>job for each</em>
+                </h1>
+              </div>
+            </div>
+            <div class="card">
+              <p>
+                Three vehicles need the same three questions. Written out by
+                hand, that is nine near-identical lines. A fourth vehicle would
+                make twelve.
+              </p>
+              <pre
+                class="code-block"
+              ><code>registrations = ["AB12 CDE", "FG34 HIJ"]
+
+for registration in registrations:
+    print(registration)</code></pre>
+              <pre class="code-block code-block--out"><code>AB12 CDE
+FG34 HIJ</code></pre>
+              <div class="punctuation">
+                <code>for</code><span>starts the repetition</span
+                ><code>registration</code
+                ><span>the loop variable: the one item currently in hand</span
+                ><code>in registrations</code
+                ><span>the collection being worked through</span><code>:</code
+                ><span>ends the line</span><code>indent</code
+                ><span>the lines that run once for every item</span>
+              </div>
+              <p>
+                Earlier sheets made you type the same shape again and again. One
+                loop now covers a collection of any size.
+              </p>
+              <p>
+                Type one line and run it before writing the next. A loop that is
+                nearly right produces output that is nearly right, and it is
+                easier to see which line caused it while there is only one line
+                to inspect.
+              </p>
+              <p class="card-label">The map</p>
+              <div
+                class="route"
+                aria-label="one item, dictionaries, a conditional, a running total, the largest, nested loops, then everything together"
+              >
+                <span class="route-step"
+                  >one item<span class="route-arrow" aria-hidden="true"
+                    >→</span
+                  ></span
+                ><span class="route-step"
+                  >dictionaries<span class="route-arrow" aria-hidden="true"
+                    >→</span
+                  ></span
+                ><span class="route-step"
+                  >a conditional<span class="route-arrow" aria-hidden="true"
+                    >→</span
+                  ></span
+                ><span class="route-step"
+                  >a running total<span class="route-arrow" aria-hidden="true"
+                    >→</span
+                  ></span
+                ><span class="route-step"
+                  >the largest<span class="route-arrow" aria-hidden="true"
+                    >→</span
+                  ></span
+                ><span class="route-step"
+                  >nested loops<span class="route-arrow" aria-hidden="true"
+                    >→</span
+                  ></span
+                ><span class="route-step">everything together</span>
+              </div>
+              <p>Each exercise stands alone. Stop anywhere and return later.</p>
+            </div>
+
+            <h2 class="section-heading">
+              <span class="section-glyph">▸</span>One item at a time
+            </h2>
+            <section id="exercise-01" class="card">
+              <p class="card-label">Exercise 01</p>
+              <p>
+                The indented lines run once for each item in the collection. The
+                loop variable holds a different item each time round.
+              </p>
+              <p>Print each registration on its own line.</p>
+              <p class="card-label">Given</p>
+              <pre
+                class="code-block"
+              ><code>registrations = ["LT19 KFN", "YB70 XCE", "PK21 RAV"]</code></pre>
+              <p class="card-label">Expected output</p>
+              <pre class="code-block code-block--out"><code>LT19 KFN
+YB70 XCE
+PK21 RAV</code></pre>
+              <p>
+                The collection is plural because it holds several. The loop
+                variable is singular because it holds one.
+              </p>
+              <details class="exercise-hints">
+                <summary>Stuck?</summary>
+                <p>
+                  What singular name could hold one registration while the loop
+                  visits plural <code>registrations</code>?
+                </p>
+              </details>
+              <details class="exercise-hints">
+                <summary>The shape</summary>
+                <pre class="code-block"><code>for ____ in registrations:
+    print(____)</code></pre>
+              </details>
+              <details class="solution">
+                <summary>Working answer</summary>
+                <pre class="code-block"><code>for registration in registrations:
+    print(registration)</code></pre>
+              </details>
+            </section>
+
+            <h2 class="section-heading">
+              <span class="section-glyph">{ }</span>One dictionary at a time
+            </h2>
+            <section id="exercise-02" class="card">
+              <p class="card-label">Exercise 02</p>
+              <p>
+                When the collection holds dictionaries, the loop variable holds
+                one whole dictionary each time round. Reach into it exactly as
+                before.
+              </p>
+              <p>
+                Print one line per vehicle giving its registration and what it
+                owes. The first hour is free; every hour after that costs £2.
+                Show money to two digits.
+              </p>
+              <p class="card-label">Given</p>
+              <pre class="code-block"><code>vehicles = [
+    {"reg": "LT19 KFN", "hours": 4},
+    {"reg": "YB70 XCE", "hours": 6},
+    {"reg": "PK21 RAV", "hours": 1},
+]</code></pre>
+              <p class="card-label">Expected output</p>
+              <pre class="code-block code-block--out"><code>LT19 KFN owes £6.00
+YB70 XCE owes £10.00
+PK21 RAV owes £0.00</code></pre>
+              <p>
+                This is the same output the first sheet needed three separate
+                lines to produce. A fourth vehicle now needs no new code.
+              </p>
+              <details class="exercise-hints">
+                <summary>Stuck?</summary>
+                <p>
+                  What does <code>vehicle</code> hold on one pass: the whole
+                  list, or one dictionary from it?
+                </p>
+              </details>
+              <details class="exercise-hints">
+                <summary>The shape</summary>
+                <pre class="code-block"><code>for vehicle in vehicles:
+    print(f"{vehicle['____']} owes £{(vehicle['hours'] - 1) * 2:.2f}")</code></pre>
+              </details>
+              <details class="solution">
+                <summary>Working answer</summary>
+                <pre class="code-block"><code>for vehicle in vehicles:
+    print(f"{vehicle['reg']} owes £{(vehicle['hours'] - 1) * 2:.2f}")</code></pre>
+              </details>
+            </section>
+
+            <h2 class="section-heading">
+              <span class="section-glyph">if</span>A question for each vehicle
+            </h2>
+            <section id="exercise-03" class="card">
+              <p class="card-label">Exercise 03</p>
+              <p>
+                An <code>if</code> can sit inside a loop. The
+                <code>if</code> line is indented once because it belongs to the
+                loop. Its <code>print</code> is indented twice because it
+                belongs to both.
+              </p>
+              <p>
+                Print a line only for vehicles over 2.0 metres, in this form:
+                <code>PK21 RAV sent to the side entrance</code>.
+              </p>
+              <p class="card-label">Given</p>
+              <pre class="code-block"><code>vehicles = [
+    {"reg": "LT19 KFN", "height": 2.0},
+    {"reg": "YB70 XCE", "height": 1.6},
+    {"reg": "PK21 RAV", "height": 2.4},
+]</code></pre>
+              <p class="card-label">Expected output</p>
+              <pre
+                class="code-block code-block--out"
+              ><code>PK21 RAV sent to the side entrance</code></pre>
+              <details class="exercise-hints">
+                <summary>Stuck?</summary>
+                <p>Which vehicle has a height strictly above 2.0?</p>
+              </details>
+              <details class="exercise-hints">
+                <summary>The shape</summary>
+                <pre class="code-block"><code>for vehicle in vehicles:
+    if vehicle["height"] &gt; 2.0:
+        print(f"{vehicle['____']} sent to the side entrance")</code></pre>
+              </details>
+              <details class="solution">
+                <summary>Working answer</summary>
+                <pre class="code-block"><code>for vehicle in vehicles:
+    if vehicle["height"] &gt; 2.0:
+        print(f"{vehicle['reg']} sent to the side entrance")</code></pre>
+              </details>
+            </section>
+
+            <h2 class="section-heading">
+              <span class="section-glyph">+</span>Takings and refusals
+            </h2>
+            <section id="exercise-04" class="card">
+              <p class="card-label">Exercise 04</p>
+              <p>
+                One loop can keep two answers growing. Takings add a money
+                value. Refusals add one each time a vehicle is too tall.
+              </p>
+              <p>The first hour is free. Every hour after that costs £2.</p>
+              <p>Print the total taken and the number of vehicles refused.</p>
+              <p class="card-label">Given</p>
+              <pre class="code-block"><code>vehicles = [
+    {"reg": "LT19 KFN", "hours": 4, "height": 1.4},
+    {"reg": "YB70 XCE", "hours": 6, "height": 2.4},
+    {"reg": "PK21 RAV", "hours": 1, "height": 1.6},
+]</code></pre>
+              <p class="card-label">Expected output</p>
+              <pre class="code-block code-block--out"><code>Total taken: £6.00
+Refused: 1</code></pre>
+              <details class="exercise-hints">
+                <summary>Stuck?</summary>
+                <p>
+                  Both answers start before the loop. The refusal count changes
+                  only inside the height question.
+                </p>
+              </details>
+              <details class="exercise-hints">
+                <summary>The shape</summary>
+                <pre class="code-block"><code>total_taken = 0
+refused = 0
+for vehicle in vehicles:
+    if vehicle["height"] >= 2.0:
+        refused = refused + 1
+    else:
+        fee = (vehicle["hours"] - 1) * 2
+        total_taken = total_taken + fee</code></pre>
+              </details>
+              <details class="solution">
+                <summary>Working answer</summary>
+                <pre class="code-block"><code>total_taken = 0
+refused = 0
+for vehicle in vehicles:
+    if vehicle["height"] >= 2.0:
+        refused = refused + 1
+    else:
+        fee = (vehicle["hours"] - 1) * 2
+        total_taken = total_taken + fee
+
+print(f"Total taken: £{total_taken:.2f}")
+print(f"Refused: {refused}")</code></pre>
+              </details>
+            </section>
+
+            <h2 class="section-heading">
+              <span class="section-glyph">↑</span>Keep the tallest pair together
+            </h2>
+            <section id="exercise-05" class="card">
+              <p class="card-label">Exercise 05</p>
+              <p>
+                Finding the largest height needs two names kept in step: the
+                height itself and the registration it belonged to. When a taller
+                vehicle appears, replace both together, or the answer will name
+                the wrong vehicle.
+              </p>
+              <pre class="code-block"><code>numbers = [4, 7]
+largest = 0
+
+for number in numbers:
+    if number &gt; largest:
+        largest = number
+
+print(largest)</code></pre>
+              <pre class="code-block code-block--out"><code>7</code></pre>
+              <p>
+                Start with a height of <code>0</code>, because every vehicle
+                height here is above it. Start the registration as an empty
+                string because it has no value until the first taller vehicle is
+                found.
+              </p>
+              <p>
+                Print the registration of the tallest vehicle and its height.
+              </p>
+              <p class="card-label">Given</p>
+              <pre class="code-block"><code>vehicles = [
+    {"reg": "LT19 KFN", "height": 2.0},
+    {"reg": "YB70 XCE", "height": 1.6},
+    {"reg": "PK21 RAV", "height": 2.4},
+]</code></pre>
+              <p class="card-label">Expected output</p>
+              <pre
+                class="code-block code-block--out"
+              ><code>Tallest: PK21 RAV at 2.4m</code></pre>
+              <details class="exercise-hints">
+                <summary>Stuck?</summary>
+                <p>
+                  What must be true before the stored tallest height and
+                  registration are replaced?
+                </p>
+              </details>
+              <details class="exercise-hints">
+                <summary>The shape</summary>
+                <pre class="code-block"><code>tallest_height = 0
+tallest_reg = ""
+for vehicle in vehicles:
+    if vehicle["height"] &gt; tallest_height:
+        tallest_height = vehicle["height"]
+        tallest_reg = vehicle["____"]</code></pre>
+              </details>
+              <details class="solution">
+                <summary>Working answer</summary>
+                <pre class="code-block"><code>tallest_height = 0
+tallest_reg = ""
+for vehicle in vehicles:
+    if vehicle["height"] &gt; tallest_height:
+        tallest_height = vehicle["height"]
+        tallest_reg = vehicle["reg"]
+
+print(f"Tallest: {tallest_reg} at {tallest_height}m")</code></pre>
+              </details>
+            </section>
+
+            <h2 class="section-heading">
+              <span class="section-glyph">↓</span>Store, then retrieve
+            </h2>
+            <section id="exercise-06" class="card">
+              <p class="card-label">Exercise 06</p>
+              <p>
+                Calculate each fee inside the loop and store it in that vehicle.
+                After the loop, answer what LT19 KFN owed from the structure.
+              </p>
+              <p>The first hour is free. Every hour after that costs £2.</p>
+              <p class="card-label">Given</p>
+              <pre class="code-block"><code>vehicles = {
+    "LT19 KFN": {"hours": 4},
+    "YB70 XCE": {"hours": 6},
+    "PK21 RAV": {"hours": 1},
+}</code></pre>
+              <p class="card-label">Expected output</p>
+              <pre class="code-block code-block--out"><code>6</code></pre>
+              <details class="exercise-hints">
+                <summary>Stuck?</summary>
+                <p>
+                  Inside the loop, the registration is the dictionary key and
+                  <code>vehicle</code> is the dictionary stored under it.
+                </p>
+              </details>
+              <details class="exercise-hints">
+                <summary>The shape</summary>
+                <pre class="code-block"><code>for reg in vehicles:
+    vehicle = vehicles[reg]
+    vehicle["fee"] = (vehicle["hours"] - 1) * 2
+
+print(vehicles["LT19 KFN"]["fee"])</code></pre>
+              </details>
+              <details class="solution">
+                <summary>Working answer</summary>
+                <pre class="code-block"><code>for reg in vehicles:
+    vehicle = vehicles[reg]
+    vehicle["fee"] = (vehicle["hours"] - 1) * 2
+
+print(vehicles["LT19 KFN"]["fee"])</code></pre>
+              </details>
+            </section>
+
+            <h2 class="section-heading">
+              <span class="section-glyph">✓</span>Everything together
+            </h2>
+            <section id="exercise-07" class="card">
+              <p class="card-label">Exercise 07</p>
+              <p>
+                Use one loop for every vehicle. Work out and print each fee,
+                print the side-entrance message when needed, add every fee to
+                the total, and count every vehicle with no permit. Print the two
+                final answers after the loop.
+              </p>
+              <p>
+                <code>has_permit</code> is a simple true-or-false fact here. It
+                is not the permit dictionary from Sheet 04.
+              </p>
+              <p class="card-label">Given</p>
+              <pre class="code-block"><code>vehicles = [
+    {"reg": "LT19 KFN", "hours": 4, "height": 2.0, "has_permit": False},
+    {"reg": "YB70 XCE", "hours": 6, "height": 1.6, "has_permit": True},
+    {"reg": "PK21 RAV", "hours": 1, "height": 2.4, "has_permit": False},
+]</code></pre>
+              <p class="card-label">Expected output</p>
+              <pre class="code-block code-block--out"><code>LT19 KFN owes £6.00
+YB70 XCE owes £10.00
+PK21 RAV owes £0.00
+PK21 RAV sent to the side entrance
+Total taken: £16.00
+Vehicles with no permit: 2</code></pre>
+              <details class="exercise-hints">
+                <summary>Stuck?</summary>
+                <p>
+                  Which two names need to start at zero before the loop: the
+                  money total and the permit count?
+                </p>
+              </details>
+              <details class="exercise-hints">
+                <summary>The shape</summary>
+                <pre class="code-block"><code>total_taken = 0
+no_permit_count = 0
+for vehicle in vehicles:
+    fee = (vehicle["hours"] - 1) * 2
+    print(f"{vehicle['reg']} owes £{fee:.2f}")
+    if vehicle["height"] &gt; 2.0:
+        print(f"{vehicle['reg']} sent to the side entrance")
+    if vehicle["has_permit"] == ____:
+        no_permit_count = no_permit_count + 1
+    total_taken = total_taken + fee</code></pre>
+              </details>
+              <details class="solution">
+                <summary>Working answer</summary>
+                <pre class="code-block"><code>total_taken = 0
+no_permit_count = 0
+
+for vehicle in vehicles:
+    fee = (vehicle["hours"] - 1) * 2
+    print(f"{vehicle['reg']} owes £{fee:.2f}")
+    if vehicle["height"] &gt; 2.0:
+        print(f"{vehicle['reg']} sent to the side entrance")
+    if vehicle["has_permit"] == False:
+        no_permit_count = no_permit_count + 1
+    total_taken = total_taken + fee
+
+print(f"Total taken: £{total_taken:.2f}")
+print(f"Vehicles with no permit: {no_permit_count}")</code></pre>
+              </details>
+            </section>
+
+            <h2 class="section-heading">
+              <span class="section-glyph">↻</span>The complete repeated shape
+            </h2>
+            <div class="card">
+              <pre class="code-block"><code>day_total = 0
+
+for customer in customers:
+    basket_total = 0
+    for price in customer["basket"].values():
+        basket_total = basket_total + price
+    day_total = day_total + basket_total
+    print(f"{customer['name']}: £{basket_total:.2f}")
+
+print(f"Day total: £{day_total:.2f}")</code></pre>
+              <p>
+                It is the Exercise 06 shape: a loop inside a loop, one total for
+                each customer and one total across all of them.
+              </p>
+              <p>
+                The first sheet printed one line at a time and the fourth asked
+                one question at a time. This sheet does both, for as many as
+                there are.
+              </p>
+            </div>
+          </section>
+          <div class="catalogue-wrap">
+            <table class="catalogue">
+              <thead>
+                <tr>
+                  <th>If you need</th>
+                  <th>Then</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>One action for every item</td>
+                  <td>Use <code>for singular in plural:</code></td>
+                </tr>
+                <tr>
+                  <td>One answer from every item</td>
+                  <td>Put the <code>if</code> inside the loop</td>
+                </tr>
+                <tr>
+                  <td>One total across the collection</td>
+                  <td>Start it before the loop</td>
+                </tr>
+                <tr>
+                  <td>One total for every item</td>
+                  <td>Start it inside the outer loop</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+        <aside class="workbench" aria-label="Python workbench">
+          <div class="workbench-header">
+            <div>
+              <p class="workbench-label">Python workbench</p>
+              <p class="runner-status">
+                Click the tab that relates to your question.
+              </p>
+              <span
+                id="runner-status"
+                class="visually-hidden"
+                aria-live="polite"
+                >Ready</span
+              >
+            </div>
+            <div class="workbench-actions">
+              <button id="run-code" class="run-button" type="button">
+                Run code <kbd>Ctrl ↵</kbd>
+              </button>
+            </div>
+          </div>
+          <div class="editor-panel">
+            <div
+              id="exercise-strip"
+              class="exercise-strip"
+              aria-label="Choose an exercise"
+            ></div>
+            <textarea
+              id="code-editor"
+              class="code-editor"
+              spellcheck="false"
+            ></textarea>
+          </div>
+          <div class="console-panel">
+            <div class="console-heading">
+              <span>Console</span
+              ><button id="clear-console" type="button">Clear</button>
+            </div>
+            <pre id="console-output" class="console-output" aria-live="polite">
+Choose an exercise, then type your line.</pre>
+          </div>
+          <p class="workbench-help">
+            Choose an exercise to begin again. It replaces the code in the
+            editor.
+          </p>
+        </aside>
+      </div>
+      <footer><p>Supplementary Sheets · Loops</p></footer>
+    </main>
+    <script src="../assets/pyodide-runner.js?v=supplementary-sheets-20260729"></script>
+    <script src="app.js?v=supplementary-sheets-20260729-navigation-fix"></script>
+    <script src="../assets/barrier-link.js"></script>
+  </body>
+</html>

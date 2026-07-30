@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Car Park Practice Area worked example: choosing a structure before writing code."
+    />
+    <title>Worked Example — Car Park Practice Area</title>
+    <link rel="stylesheet" href="../assets/drills.css?v=exit-raised-20260729" />
+    <link rel="stylesheet" href="../assets/workbench.css?v=car-park-20260728" />
+  </head>
+  <body>
+    <a class="skip" href="#area">Skip to the worked example</a>
+    <aside class="rail">
+      <div class="brand">
+        <a
+          class="brand-home brand-mark"
+          href="../index.html"
+          aria-label="Car Park Practice Area"
+          >&#9656;</a
+        >
+        <div>
+          <p class="eyebrow">Python · practice area</p>
+          <p class="brand-name">Car Park Barrier</p>
+        </div>
+      </div>
+      <nav class="course-nav" aria-label="Area pages">
+        <p>Area</p>
+        <ol>
+          <li>
+            <a href="index.html" aria-current="page"
+              ><span>01</span>Worked Example</a
+            >
+          </li>
+          <li>
+            <a href="../02-nesting/index.html"><span>02</span>Test</a>
+          </li>
+        </ol>
+      </nav>
+      <nav class="course-nav hints" aria-label="Hints">
+        <p>Hints</p>
+        <details>
+          <summary>Choosing a container</summary>
+          <p>
+            A list is good when you walk every item. A keyed dictionary is good
+            when you need one named item quickly.
+          </p>
+        </details>
+        <details>
+          <summary>Address labels</summary>
+          <p>
+            Each square bracket is another line of the address, starting from
+            the outside every time.
+          </p>
+        </details>
+        <details>
+          <summary>A carrier</summary>
+          <p>
+            Start a running total at zero before the loop. Each pass can add its
+            share.
+          </p>
+        </details>
+      </nav>
+      <a
+        class="rail-exit"
+        href="../../supplementary-sheets/car-park-practice-area/"
+        aria-label="Exit here: return to Supplementary Sheets"
+      >
+        <span class="exit-label">Supplementary sheets</span>
+        <span class="exit-stage" aria-hidden="true"
+          ><span class="exit-post"></span><span class="exit-lamp"></span
+          ><span class="exit-arm"></span
+        ></span>
+        <span class="exit-road" aria-hidden="true"></span>
+      </a>
+      <a
+        class="rail-tidy"
+        href="https://github.com/TidyWeb"
+        target="_blank"
+        rel="noopener"
+        ><img src="../assets/tidyweb_logo.png" alt="" /><span
+          ><strong>TidyWeb</strong
+          ><small>View this project on GitHub</small></span
+        ></a
+      >
+    </aside>
+    <main>
+      <div class="shell">
+        <article id="area" class="drill-reading">
+          <section class="lesson">
+            <div class="lesson-head">
+              <div class="brand-mark" aria-hidden="true">{ }</div>
+              <div>
+                <p class="lesson-no">PAGE 01 · WORKED EXAMPLE</p>
+                <h1 class="intro-title">
+                  <span>Saturday market</span><em>stall</em>
+                </h1>
+              </div>
+            </div>
+            <h2 class="section-heading">
+              <span class="section-glyph">▸</span>Start with the holding
+              decision
+            </h2>
+            <p class="thesis">
+              Before code, decide what needs holding together and what you will
+              need to do with it.
+            </p>
+            <div class="card">
+              <p class="card-label">The facts</p>
+              <p>
+                Five customers have a name, a basket of priced items, a
+                loyalty-card fact and a bag count. We must walk through every
+                customer, calculate a bill, and add up the day.
+              </p>
+              <p>
+                <strong>Two structures could hold this.</strong> One dictionary
+                keyed by customer name would be useful if the stall repeatedly
+                asked, “What did Marjorie buy?” A
+                <strong>list of dictionaries</strong> is right here because
+                every job walks every customer in turn. There is no named lookup
+                to do.
+              </p>
+              <p>
+                That decision is not permanent truth. It is a response to the
+                job in front of us.
+              </p>
+            </div>
+            <h2 class="section-heading">
+              <span class="section-glyph">✱</span>Run the complete example
+            </h2>
+            <div class="card">
+              <p class="card-label">
+                Then switch off one marked section at a time
+              </p>
+              <p>
+                Each comment tells you what will change. Run it again after
+                commenting out the section. The program stays visible as one
+                whole shape; the explanations below take it apart.
+              </p>
+            </div>
+            <h2 class="section-heading">
+              <span class="section-glyph">→</span>How the shape works
+            </h2>
+            <div class="card">
+              <h3>1. Boxes inside boxes</h3>
+              <p>
+                <strong
+                  >Curly brackets build; square brackets build and reach
+                  in.</strong
+                >
+                Each customer dictionary keeps facts about one customer
+                together. Their basket is another dictionary inside it: item
+                names point to prices. The outer list is one shelf holding
+                several labelled boxes.
+              </p>
+              <h3>2. The address label</h3>
+              <p>
+                <code>customer["basket"]["apples"]</code> starts at the outside,
+                reaches the basket, then reaches apples. Every bracket is
+                another line of the address.
+              </p>
+              <h3>3. The loop and the carrier</h3>
+              <p>
+                The <strong>loop variable</strong> is the one customer taken
+                down from the shelf on each pass.
+                <code>basket_total = 0</code> is a <strong>carrier</strong>: it
+                exists before prices are added.
+              </p>
+              <h3>4. Independent decisions</h3>
+              <p>
+                Loyalty and free bags are different facts, so they get two
+                <code>if</code>s. A customer can have both. An
+                <code>elif</code> would silently skip the second question.
+              </p>
+              <h3>5. Output</h3>
+              <p>
+                An f-string joins values into a readable line.
+                <code>:.2f</code> means “always show two digits after the
+                decimal point”, which is what money needs.
+              </p>
+            </div>
+            <h2 class="section-heading">
+              <span class="section-glyph">✓</span>What to notice before the Test
+            </h2>
+            <div class="catalogue-wrap">
+              <table class="catalogue">
+                <thead>
+                  <tr>
+                    <th>Question first</th>
+                    <th>Then code</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Will I walk everything or look up one named thing?</td>
+                    <td>Choose list or keyed dictionary.</td>
+                  </tr>
+                  <tr>
+                    <td>What answer grows as I go?</td>
+                    <td>Make a carrier and start it at zero.</td>
+                  </tr>
+                  <tr>
+                    <td>Can both facts be true?</td>
+                    <td>Use two independent <code>if</code>s.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <nav class="chapter-nav">
+            <a class="chap-next" href="../02-nesting/"
+              ><span>Now try it cold</span><strong>Page 02 — Test</strong></a
+            >
+          </nav>
+        </article>
+        <aside class="workbench" aria-label="Python workbench">
+          <div class="workbench-header">
+            <div>
+              <p class="workbench-label">Python workbench</p>
+              <span id="runner-status" class="runner-status">Ready</span>
+            </div>
+            <div class="workbench-actions">
+              <button
+                id="reset-code"
+                class="icon-button"
+                type="button"
+                title="Restore example"
+              >
+                ↻</button
+              ><button id="run-code" class="run-button" type="button">
+                Run code <kbd>Ctrl ↵</kbd>
+              </button>
+            </div>
+          </div>
+          <div class="editor-panel">
+            <div class="file-tab">
+              <span class="python-dot"></span>market_stall.py
+            </div>
+            <textarea
+              id="code-editor"
+              class="code-editor"
+              spellcheck="false"
+            ></textarea>
+          </div>
+          <div class="console-panel">
+            <div class="console-heading">
+              <span>Console</span
+              ><button id="clear-console" type="button">Clear</button>
+            </div>
+            <pre id="console-output" class="console-output" aria-live="polite">
+Press “Run code” or Ctrl+Enter.</pre>
+          </div>
+          <p class="workbench-help">
+            Drag the divider to give your code more room.
+          </p>
+        </aside>
+      </div>
+      <footer><p>Car Park Practice Area · Worked Example</p></footer>
+    </main>
+    <script src="../assets/pyodide-runner.js?v=car-park-20260728"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

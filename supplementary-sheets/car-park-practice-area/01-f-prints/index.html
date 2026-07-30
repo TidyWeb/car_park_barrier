@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A short Python f-string fluency sheet.">
+  <title>F-Prints — Supplementary Sheet</title>
+  <link rel="stylesheet" href="../assets/drills.css?v=barrier-bottom-group-20260729">
+  <link rel="stylesheet" href="../assets/workbench.css?v=supplementary-sheets-20260729">
+  <style>
+    .sheet-pending{display:flex;gap:.8rem;align-items:center;padding:.64rem .4rem;border-bottom:1px solid rgba(255,255,255,.1);color:#8fa2ad;font-size:.84rem}.sheet-pending span{min-width:1.35rem;color:#6e8490;font:700 .72rem var(--mono)}
+    .exercise-strip{display:flex;overflow-x:auto;background:#0e181e}.exercise-strip button{min-width:3.1rem;border:0;border-right:1px solid rgba(255,255,255,.12);padding:.7rem 1rem;color:#b9c7cf;background:transparent;font:.78rem var(--mono);cursor:pointer}.exercise-strip button[aria-pressed="true"]{color:#fff;background:#1b333f;box-shadow:inset 0 2px 0 var(--amber),inset 0 -2px 0 rgba(143,185,203,.35);font-weight:800}.exercise-strip button:hover,.exercise-strip button:focus-visible{color:#fff;background:#17242d}.exercise-strip button[aria-pressed="true"]:hover,.exercise-strip button[aria-pressed="true"]:focus-visible{background:#244451}.rail .course-nav.hints p code{color:#8fb9cb;background:rgba(143,185,203,.10)}.solution{margin-top:1.1rem;padding:0 1.1rem 1.1rem;border-left:4px solid var(--green);background:var(--mint)}.solution summary{padding:.9rem 0;color:var(--green);font:800 .72rem var(--mono);letter-spacing:.08em;text-transform:uppercase;cursor:pointer}.solution .code-block{margin:.25rem 0 0}.solution .code-block code{white-space:pre-wrap;overflow-wrap:anywhere}.exercise-hints{margin-top:1rem;padding:.7rem 1rem;border-left:4px solid var(--amber);background:var(--paper)}.exercise-hints>summary{color:var(--ink);font:800 .72rem var(--mono);letter-spacing:.08em;text-transform:uppercase;cursor:pointer}.exercise-hints details{margin-top:.7rem}.exercise-hints details summary{cursor:pointer;font-weight:700}.exercise-hints p{margin:.5rem 0 0}.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#sheet">Skip to the sheet</a>
+  <aside class="rail">
+    <div class="brand">
+      <a class="brand-home brand-mark" href="../index.html" aria-label="Supplementary sheets home">&#9656;</a>
+      <div><p class="eyebrow">Python · supplementary sheet</p><p class="brand-name">F-Prints</p></div>
+    </div>
+    <nav class="course-nav" aria-label="Supplementary sheets">
+      <p>Sheets</p>
+      <ol>
+        <li><a href="index.html" aria-current="page"><span>01</span>F-Prints</a></li>
+        <li><a href="../02-building/index.html"><span>02</span>Building</a></li>
+        <li><a href="../03-reaching-in/index.html"><span>03</span>Reaching In</a></li>
+        <li><a href="../04-conditionals/index.html"><span>04</span>Conditionals</a></li>
+        <li><a href="../05-loops/index.html"><span>05</span>Loops</a></li>
+      </ol>
+    </nav>
+    <nav class="course-nav hints" aria-label="F-print hints">
+      <p>Hints</p>
+      <details><summary>What the f does</summary><p><code>f</code> before the quote turns the string into a template. Anything inside <code>{ }</code> is worked out and dropped in. Without the <code>f</code>, you get the braces printed literally.</p></details>
+      <details><summary>Dictionary keys need quotes</summary><p>A dictionary key is text, so it needs quotes inside the square brackets: <code>vehicle['reg']</code>. Using the other quote kind from the outer f-string makes a crowded line easier to read.</p></details>
+      <details><summary>Two digits for money</summary><p><code>:.2f</code> goes inside the braces after the value. <code>£</code> goes outside the braces, as ordinary text.</p></details>
+      <details><summary>Brackets have different jobs</summary><p><code>{"reg": "LT19 KFN"}</code> builds a dictionary. <code>vehicle['reg']</code> reaches into it. Inside an f-string, <code>{vehicle['reg']}</code> means: work out that reach, then insert it into the line.</p></details>
+    </nav>
+    <a class="rail-capstone" href="../../../Car%20Park%20Practice%20Area/02-nesting/" aria-label="Open the full Car Park Barrier project">
+      <span class="barrier-project-label">The full project</span>
+      <span class="barrier-stage" aria-hidden="true"><span class="barrier-post"></span><span class="barrier-lamp"></span><span class="barrier-arm"></span></span>
+      <span class="barrier-road" aria-hidden="true"><img src="../assets/car-park-road.png" alt=""></span>
+    </a>
+    <a class="rail-tidy" href="https://github.com/TidyWeb" target="_blank" rel="noopener"><img src="../assets/tidyweb_logo.png" alt=""><span><strong>TidyWeb</strong><small>View this project on GitHub</small></span></a>
+  </aside>
+  <main>
+    <div class="shell">
+      <article id="sheet" class="drill-reading">
+        <section class="lesson">
+          <div class="lesson-head"><div class="brand-mark" aria-hidden="true">{ }</div><div><p class="lesson-no">SHEET 01 · SCALES</p><h1 class="intro-title"><span>Getting a value</span><em>into a line</em></h1></div></div>
+          <div class="card"><p class="card-label">Scales, not a project</p><p>I love f-strings. I love them because they are difficult: they forced me to think about what I was putting on the page. Not only about the syntax, which can feel tortuous, but about how to break a line into components, using different brackets to hold different things. Practising that helped me.</p><p>These are short, repetitive and deliberately unexciting. The first exercise shows the full shape once; the next four isolate the part that tends to snag: reaching into a dictionary with the right brackets and quotes. Correct but slow is the middle stage, not the finish.</p></div>
+
+          <h2 class="section-heading"><span class="section-glyph">▸</span>See the whole shape once</h2>
+          <div class="card"><p class="card-label">Worked example</p><pre class="code-block"><code>name = "Marjorie"
+spend = 18.4
+
+print(f"{name} spent £{spend:.2f}")</code></pre><pre class="code-block code-block--out"><code>Marjorie spent £18.40</code></pre><p>The <code>f</code> makes the whole string a template.</p><p><code>{name}</code> is replaced by the value; the text around it is printed as written.</p><p>£ sits outside the braces because it is text. <code>:.2f</code> sits inside because it is an instruction about the number.</p></div>
+
+          <h2 class="section-heading"><span class="section-glyph">✱</span>Tier 1 · the shape, then the reach alone</h2>
+          <section id="exercise-01" class="card"><p class="card-label">Exercise 01</p><p>Print one line giving the registration, how long the vehicle stayed, and what it owes as money. This is the whole flat shape once. If it is not quick, return to the worked example before moving on.</p><p class="card-label">Given</p><pre class="code-block"><code>reg = "LT19 KFN"
+hours = 4
+fee = 4.5</code></pre><p class="card-label">Expected output</p><pre class="code-block code-block--out"><code>LT19 KFN stayed 4 hours and owes £4.50</code></pre><details class="solution"><summary>Show a working answer</summary><pre class="code-block"><code>print(f"{reg} stayed {hours} hours and owes £{fee:.2f}")</code></pre></details></section>
+          <section id="exercise-02" class="card"><p class="card-label">Exercise 02</p><p>There is no f-string here. Print just the registration from the dictionary. The only new question is how to write the key inside the square brackets.</p><p class="card-label">Given</p><pre class="code-block"><code>vehicle = {"reg": "PK21 RAV", "fee": 3.2}</code></pre><p class="card-label">Expected output</p><pre class="code-block code-block--out"><code>PK21 RAV</code></pre><details class="solution"><summary>Show a working answer</summary><pre class="code-block"><code>print(vehicle['reg'])</code></pre></details></section>
+          <section id="exercise-03" class="card"><p class="card-label">Exercise 03</p><p>Use the same shape to print just the fee. Nothing else changes; only the key does.</p><p class="card-label">Given</p><pre class="code-block"><code>vehicle = {"reg": "PK21 RAV", "fee": 3.2}</code></pre><p class="card-label">Expected output</p><pre class="code-block code-block--out"><code>3.2</code></pre><details class="solution"><summary>Show a working answer</summary><pre class="code-block"><code>print(vehicle['fee'])</code></pre></details></section>
+
+          <h2 class="section-heading"><span class="section-glyph">→</span>Tier 2 · brackets, then company</h2>
+          <section id="exercise-04" class="card"><p class="card-label">Exercise 04</p><p>Create a dictionary named <code>vehicle</code> with registration <code>LT19 KFN</code> and fee <code>4.5</code>. Then print just its registration. Curly brackets build the dictionary; square brackets reach back into it.</p><p class="card-label">Expected output</p><pre class="code-block code-block--out"><code>LT19 KFN</code></pre><details class="exercise-hints"><summary>Need a hint?</summary><details><summary>Hint 1</summary><p>First create <code>vehicle</code>. The printed line comes after the dictionary exists.</p></details><details><summary>Hint 2</summary><p>Inside the dictionary, each fact has a quoted label, a colon, and its value.</p></details><details><summary>Hint 3</summary><p>Once it exists, use the same one-key reach as Exercise 02: the quoted label is <code>'reg'</code>.</p></details></details><details class="solution"><summary>Show a working answer</summary><pre class="code-block"><code>vehicle = {"reg": "LT19 KFN", "fee": 4.5}
+print(vehicle['reg'])</code></pre></details></section>
+          <section id="exercise-05" class="card"><p class="card-label">Exercise 05</p><p>The reach now moves inside an f-string. Print a line reading <code>Vehicle: PK21 RAV</code>. The square brackets still reach for the key; the curly braces tell the f-string to insert that reached value.</p><p class="card-label">Given</p><pre class="code-block"><code>vehicle = {"reg": "PK21 RAV", "fee": 3.2}</code></pre><p class="card-label">Expected output</p><pre class="code-block code-block--out"><code>Vehicle: PK21 RAV</code></pre><details class="exercise-hints"><summary>Need a hint?</summary><details><summary>Hint 1</summary><p>Only the registration changes in the sentence. The rest is ordinary text.</p></details><details><summary>Hint 2</summary><p>Start with the reach you already know: <code>vehicle['reg']</code>.</p></details><details><summary>Hint 3</summary><p>Put that reach inside <code>{ }</code>, then put <code>f</code> before the opening quote.</p></details></details><details class="solution"><summary>Show a working answer</summary><pre class="code-block"><code>print(f"Vehicle: {vehicle['reg']}")</code></pre></details></section>
+          <section id="exercise-06" class="card"><p class="card-label">Exercise 06</p><p>All the facts are now in one dictionary. Print one line naming the vehicle and what it owes.</p><p class="card-label">Given</p><pre class="code-block"><code>vehicle = {"reg": "YB70 XCE", "fee": 12.0}</code></pre><p class="card-label">Expected output</p><pre class="code-block code-block--out"><code>YB70 XCE owes £12.00</code></pre><details class="exercise-hints"><summary>Need a hint?</summary><details><summary>Hint 1</summary><p>This sentence needs two changing facts from the same dictionary.</p></details><details><summary>Hint 2</summary><p>One reach gets the registration; the other gets the fee.</p></details><details><summary>Hint 3</summary><p>The money instruction belongs after the fee reach, inside its curly braces: <code>:.2f</code>.</p></details></details><details class="solution"><summary>Show a working answer</summary><pre class="code-block"><code>print(f"{vehicle['reg']} owes £{vehicle['fee']:.2f}")</code></pre></details></section>
+
+          <h2 class="section-heading"><span class="section-glyph">✓</span>Tier 3 · the trap, and cold</h2>
+          <section id="exercise-07" class="card"><p class="card-label">Exercise 07</p><p>This line is already written and it will not run. Before you press Run, decide what <code>reg</code> and <code>fee</code> mean to Python. Then run it, read the error, and fix it. Predicting an error is worth more than avoiding one; the rail’s dictionary-key hint is there if needed.</p><p class="card-label">Given</p><pre class="code-block"><code>vehicle = {"reg": "PK21 RAV", "fee": 3.2}
+
+print(f"{vehicle[reg]} owes £{vehicle[fee]:.2f}")</code></pre><p class="card-label">Expected output once fixed</p><pre class="code-block code-block--out"><code>PK21 RAV owes £3.20</code></pre><details class="exercise-hints"><summary>Need a hint?</summary><details><summary>Hint 1</summary><p>Ask what Python thinks <code>reg</code> is when it has no quote marks.</p></details><details><summary>Hint 2</summary><p>Without quotes, Python reads <code>reg</code> as a variable name. Here it is meant to be a dictionary label.</p></details><details><summary>Hint 3</summary><p>Dictionary labels are text: put quote marks around both <code>reg</code> and <code>fee</code> inside the square brackets.</p></details></details><details class="solution"><summary>Show a working answer</summary><pre class="code-block"><code>print(f"{vehicle['reg']} owes £{vehicle['fee']:.2f}")</code></pre></details></section>
+          <section id="exercise-08" class="card"><p class="card-label">Exercise 08</p><p>The fee is not stored. It is the hours multiplied by the rate. Print one line showing the vehicle and what it owes, working the fee out as you print it.</p><p class="card-label">Given</p><pre class="code-block"><code>vehicle = {"reg": "LT19 KFN", "hours": 4}
+rate = 2.75</code></pre><p class="card-label">Expected output</p><pre class="code-block code-block--out"><code>LT19 KFN owes £11.00</code></pre><details class="exercise-hints"><summary>Need a hint?</summary><details><summary>Hint 1</summary><p>The line has two jobs: show the registration and work out the fee.</p></details><details><summary>Hint 2</summary><p><code>hours</code> belongs to <code>vehicle</code>; <code>rate</code> is already a named variable.</p></details><details><summary>Hint 3</summary><p>Calculate <code>vehicle['hours'] * rate</code> inside the second set of curly braces, then add <code>:.2f</code>.</p></details></details><details class="solution"><summary>Show a working answer</summary><pre class="code-block"><code>print(f"{vehicle['reg']} owes £{vehicle['hours'] * rate:.2f}")</code></pre></details></section>
+          <section id="exercise-09" class="card"><p class="card-label">Exercise 09</p><p>Print one line for each vehicle, giving its registration and what it owes. The fee is the hours multiplied by the rate. Money shows two digits.</p><p>It needs a loop, which is Sheet 05’s subject. That is intentional: three separate <code>print</code> lines are an acceptable answer here.</p><p class="card-label">Given</p><pre class="code-block"><code>vehicles = [
+    {"reg": "LT19 KFN", "hours": 4},
+    {"reg": "YB70 XCE", "hours": 6},
+    {"reg": "PK21 RAV", "hours": 1},
+]
+rate = 2.75</code></pre><p class="card-label">Expected output</p><pre class="code-block code-block--out"><code>LT19 KFN owes £11.00
+YB70 XCE owes £16.50
+PK21 RAV owes £2.75</code></pre><details class="exercise-hints"><summary>Need a hint?</summary><details><summary>Hint 1</summary><p>This is the Exercise 08 shape repeated for each dictionary in <code>vehicles</code>.</p></details><details><summary>Hint 2</summary><p>A loop gives you one dictionary at a time. Call that one dictionary <code>vehicle</code>.</p></details><details><summary>Hint 3</summary><p>Inside the loop, use the same registration reach and hours-times-rate calculation as Exercise 08.</p></details></details><details class="solution"><summary>Show a working answer</summary><pre class="code-block"><code>for vehicle in vehicles:
+    print(f"{vehicle['reg']} owes £{vehicle['hours'] * rate:.2f}")</code></pre></details></section>
+
+          <h2 class="section-heading"><span class="section-glyph">✓</span>Keep beside the keyboard</h2>
+          <div class="catalogue-wrap"><table class="catalogue"><thead><tr><th>If you want</th><th>Then</th></tr></thead><tbody><tr><td>A value inside a line of text</td><td><code>f</code> before the quote, value in <code>{ }</code></td></tr><tr><td>Money, always two digits</td><td><code>:.2f</code> inside the braces, after the value</td></tr><tr><td>A pound sign</td><td>Outside the braces — it is text</td></tr><tr><td>A value from a dictionary</td><td>Use a quoted label inside square brackets: <code>vehicle['reg']</code></td></tr></tbody></table></div>
+        </section>
+        <nav class="chapter-nav" aria-label="Next sheet"><a class="chap-next" href="../02-building/index.html"><span>Next sheet</span><strong>Sheet 02 — Building</strong></a></nav>
+      </article>
+      <aside class="workbench" aria-label="Python workbench">
+        <div class="workbench-header"><div><p class="workbench-label">Python workbench</p><p class="runner-status">Click the tab that relates to your question.</p><span id="runner-status" class="visually-hidden" aria-live="polite">Ready</span></div><div class="workbench-actions"><button id="run-code" class="run-button" type="button">Run code <kbd>Ctrl ↵</kbd></button></div></div>
+        <div class="editor-panel"><div id="exercise-strip" class="exercise-strip" aria-label="Choose an exercise"></div><textarea id="code-editor" class="code-editor" spellcheck="false"></textarea></div>
+        <div class="console-panel"><div class="console-heading"><span>Console</span><button id="clear-console" type="button">Clear</button></div><pre id="console-output" class="console-output" aria-live="polite">Choose an exercise, then type your line.</pre></div>
+        <p class="workbench-help">Choose an exercise to begin again. It replaces the code in the editor.</p>
+      </aside>
+    </div>
+    <footer><p>Supplementary Sheets · F-Prints</p></footer>
+  </main>
+  <script src="../assets/pyodide-runner.js?v=supplementary-sheets-20260729"></script>
+  <script src="app.js?v=supplementary-sheets-20260729-navigation-fix"></script>
+  <script src="../assets/barrier-link.js"></script>
+</body>
+</html>

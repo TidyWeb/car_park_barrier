@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Car Park Practice Area test: choose how to structure the day's cars."
+    />
+    <title>Test — Car Park Practice Area</title>
+    <link rel="stylesheet" href="../assets/drills.css?v=exit-raised-20260729" />
+    <link rel="stylesheet" href="../assets/workbench.css?v=car-park-20260728" />
+  </head>
+  <body>
+    <a class="skip" href="#area">Skip to the test</a>
+    <aside class="rail">
+      <div class="brand">
+        <a class="brand-home brand-mark" href="../index.html">&#9656;</a>
+        <div>
+          <p class="eyebrow">Python · practice area</p>
+          <p class="brand-name">Car Park Barrier</p>
+        </div>
+      </div>
+      <nav class="course-nav" aria-label="Area pages">
+        <p>Area</p>
+        <ol>
+          <li>
+            <a href="../01-flow-control/index.html"
+              ><span>01</span>Worked Example</a
+            >
+          </li>
+          <li>
+            <a href="index.html" aria-current="page"><span>02</span>Test</a>
+          </li>
+        </ol>
+      </nav>
+      <nav class="course-nav hints" aria-label="Hints">
+        <p>Hints</p>
+        <details>
+          <summary>Choosing a container</summary>
+          <p>
+            A list is good for a route through every item. A keyed dictionary is
+            good when you later need one known item. Either can begin this Test.
+          </p>
+        </details>
+        <details>
+          <summary>Building it by hand</summary>
+          <p>
+            Curly brackets build. Square brackets build and reach in. Give each
+            fact one clear name.
+          </p>
+        </details>
+        <details>
+          <summary>Getting one thing out</summary>
+          <p>
+            A <code>for</code> loop takes one labelled box down from the shelf
+            at a time.
+          </p>
+        </details>
+        <details>
+          <summary>Reaching a fact</summary>
+          <p>
+            Start at the outside of the address label every time, then add
+            brackets one level at a time.
+          </p>
+        </details>
+        <details>
+          <summary>Deciding the charge</summary>
+          <p>
+            The free hour is removed before charging: the extra hours are not
+            the whole stay.
+          </p>
+        </details>
+        <details>
+          <summary>Two decisions at once</summary>
+          <p>
+            If both facts can be true, they need separate <code>if</code>s. An
+            <code>elif</code> stops at the first true route.
+          </p>
+        </details>
+        <details>
+          <summary>Keeping a running total</summary>
+          <p>
+            A carrier starts at zero before the loop and grows one item at a
+            time.
+          </p>
+        </details>
+        <details>
+          <summary>Finding the biggest</summary>
+          <p>
+            Keep a current biggest answer. Replace it only when a new value is
+            bigger.
+          </p>
+        </details>
+        <details>
+          <summary>Money to two places</summary>
+          <p>Inside an f-string, <code>:.2f</code> shows two decimal places.</p>
+        </details>
+      </nav>
+      <a
+        class="rail-exit"
+        href="../../supplementary-sheets/car-park-practice-area/"
+        aria-label="Exit here: return to Supplementary Sheets"
+      >
+        <span class="exit-label">Supplementary sheets</span>
+        <span class="exit-stage" aria-hidden="true"
+          ><span class="exit-post"></span><span class="exit-lamp"></span
+          ><span class="exit-arm"></span
+        ></span>
+        <span class="exit-road" aria-hidden="true"></span>
+      </a>
+      <a
+        class="rail-tidy"
+        href="https://github.com/TidyWeb"
+        target="_blank"
+        rel="noopener"
+        ><img src="../assets/tidyweb_logo.png" alt="" /><span
+          ><strong>TidyWeb</strong
+          ><small>View this project on GitHub</small></span
+        ></a
+      >
+    </aside>
+    <main>
+      <div class="shell">
+        <article id="area" class="drill-reading">
+          <section class="lesson">
+            <div class="lesson-head">
+              <div class="brand-mark">?</div>
+              <div>
+                <p class="lesson-no">PAGE 02 · TEST</p>
+                <h1 class="intro-title">
+                  <span>Car park</span><em>barrier</em>
+                </h1>
+              </div>
+            </div>
+            <h2 class="section-heading">
+              <span class="section-glyph">▸</span>The rules
+            </h2>
+            <div class="card">
+              <p>
+                First hour free. Each hour after that costs <strong>£2</strong>.
+                Permit holders pay nothing. A vehicle over
+                <strong>2 metres</strong> is refused and sent to the coach park;
+                a refused vehicle pays nothing.
+              </p>
+            </div>
+            <h2 class="section-heading">
+              <span class="section-glyph">▸</span>Saturday's facts
+            </h2>
+            <div class="card">
+              <p>
+                Seven cars came through. The blue Astra,
+                <strong>LT19 KFN</strong>, was in for four hours, had no permit,
+                and was 1.4 metres high. The council van,
+                <strong>YB70 XCE</strong>, stood 2.4 metres high and was in for
+                six hours with no permit. <strong>PK21 RAV</strong>, a red Fiat,
+                stayed exactly one hour, has no permit and is 1.6 metres high.
+                The silver Volvo, <strong>MC22 LEE</strong>, stayed nine hours,
+                has a permit and is 1.8 metres high.
+                <strong>DA18 NQW</strong> is 2.0 metres high, had no permit and
+                stayed three hours. The black Mini, <strong>HF20 JET</strong>,
+                was in for two hours, has no permit and is 1.5 metres high.
+                Finally, <strong>RS71 OAK</strong> was in five hours, has no
+                permit and is 1.9 metres high.
+              </p>
+              <p>
+                One car is deliberately described out of the neat order you
+                might want. Sort the facts out before you code.
+              </p>
+            </div>
+            <h2 class="section-heading">
+              <span class="section-glyph">✓</span>Job list
+            </h2>
+            <div class="card">
+              <ol>
+                <li>
+                  <strong
+                    >Decide how to hold the day's cars and build it by
+                    hand.</strong
+                  >
+                  A list of cars or cars keyed by registration both work. Before
+                  writing code, add a comment saying which you chose and why.
+                </li>
+                <li>
+                  Print one line per car: registration, hours, and what it owes,
+                  to two decimal places.
+                </li>
+                <li>
+                  Refused cars say so instead of a charge, and say where to go.
+                </li>
+                <li>Print total takings for the day.</li>
+                <li>Print how many cars were refused.</li>
+                <li>Print the registration of the car that owed the most.</li>
+                <li>
+                  <strong>What did LT19 KFN owe?</strong> Answer it from your
+                  structure, not by reading an earlier output line.
+                </li>
+              </ol>
+              <p>
+                Height and charging are independent facts. A tall car can also
+                have overstayed, but refusal means it must not count towards
+                takings.
+              </p>
+            </div>
+            <h2 class="section-heading">
+              <span class="section-glyph">✱</span>Before you run
+            </h2>
+            <p class="thesis">
+              Say the jobs in plain English first: hold the cars, visit each
+              one, decide refusal, decide charge, keep the answers that grow,
+              then ask one car a later question.
+            </p>
+            <h2 class="section-heading">
+              <span class="section-glyph">✓</span>Full worked solution
+            </h2>
+            <details class="answer-check">
+              <summary>Open only after your own attempt</summary>
+              <div>
+                <h3>Choice A — list of dictionaries</h3>
+                <p>
+                  Best for walking the whole day. Job 7 needs another loop to
+                  find <code>LT19 KFN</code>, which is its cost.
+                </p>
+                <pre class="code-block"><code>cars = [
+    {"reg": "LT19 KFN", "hours": 4, "permit": False, "height": 1.4},
+    {"reg": "YB70 XCE", "hours": 6, "permit": False, "height": 2.4},
+    {"reg": "PK21 RAV", "hours": 1, "permit": False, "height": 1.6},
+]
+takings = 0
+refused_count = 0
+largest_owed = 0
+largest_reg = ""
+for car in cars:
+    if car["height"] &gt; 2:
+        refused_count += 1
+        print(f'{car["reg"]}: refused — coach park')
+        continue
+    owed = 0
+    if not car["permit"] and car["hours"] &gt; 1:
+        owed = (car["hours"] - 1) * 2
+    takings += owed
+    if owed &gt; largest_owed:
+        largest_owed = owed
+        largest_reg = car["reg"]
+    print(f'{car["reg"]}: {car["hours"]} hours, £{owed:.2f}')</code></pre>
+                <h3>Choice B — keyed by registration</h3>
+                <p>
+                  Job 7 is direct: <code>cars["LT19 KFN"]</code>. The price is
+                  that building the data takes a little more deliberate naming.
+                </p>
+                <p>
+                  Whichever shape you chose, you needed the same questions; only
+                  the route to a later answer changed.
+                </p>
+                <h3>Try these before moving on</h3>
+                <div class="catalogue-wrap">
+                  <table class="catalogue">
+                    <thead>
+                      <tr>
+                        <th>Break it deliberately</th>
+                        <th>What you should notice</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Use <code>elif</code> for refusal and charging</td>
+                        <td>
+                          The second independent question is silently skipped.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Charge <code>hours * 2</code></td>
+                        <td>The free hour disappears.</td>
+                      </tr>
+                      <tr>
+                        <td>Add a refused car to takings</td>
+                        <td>
+                          The total is wrong despite the refusal message looking
+                          right.
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Use <code>:.2f</code> on text</td>
+                        <td>
+                          Python objects: formatting belongs to the money
+                          number.
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </details>
+          </section>
+          <nav class="chapter-nav">
+            <a class="chap-prev" href="../01-flow-control/"
+              ><span>Return to</span><strong>Worked Example</strong></a
+            >
+          </nav>
+        </article>
+        <aside class="workbench" aria-label="Python workbench">
+          <div class="workbench-header">
+            <div>
+              <p class="workbench-label">Python workbench</p>
+              <span id="runner-status" class="runner-status">Ready</span>
+            </div>
+            <div class="workbench-actions">
+              <button
+                id="reset-code"
+                class="icon-button"
+                type="button"
+                title="Clear my test"
+              >
+                ↻</button
+              ><button id="run-code" class="run-button" type="button">
+                Run code <kbd>Ctrl ↵</kbd>
+              </button>
+            </div>
+          </div>
+          <div class="editor-panel">
+            <div class="file-tab">
+              <span class="python-dot"></span>car_park.py
+            </div>
+            <textarea
+              id="code-editor"
+              class="code-editor"
+              spellcheck="false"
+            ></textarea>
+          </div>
+          <div class="console-panel">
+            <div class="console-heading">
+              <span>Console</span
+              ><button id="clear-console" type="button">Clear</button>
+            </div>
+            <pre id="console-output" class="console-output" aria-live="polite">
+Press “Run code” or Ctrl+Enter.</pre>
+          </div>
+          <p class="workbench-help">
+            Your editor begins empty. Your structure decision begins with you.
+          </p>
+        </aside>
+      </div>
+      <footer><p>Car Park Practice Area · Test</p></footer>
+    </main>
+    <script src="../assets/pyodide-runner.js?v=car-park-20260728"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

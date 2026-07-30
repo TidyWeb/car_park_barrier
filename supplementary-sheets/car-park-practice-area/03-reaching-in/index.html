@@ -1,0 +1,791 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="A short Python dictionary and list navigation sheet."
+    />
+    <title>Reaching In — Supplementary Sheet</title>
+    <link rel="stylesheet" href="../assets/drills.css?v=barrier-bottom-group-20260729" />
+    <link
+      rel="stylesheet"
+      href="../assets/workbench.css?v=supplementary-sheets-20260729"
+    />
+    <style>
+      .sheet-pending {
+        display: flex;
+        gap: 0.8rem;
+        align-items: center;
+        padding: 0.64rem 0.4rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        color: #8fa2ad;
+        font-size: 0.84rem;
+      }
+      .sheet-pending span {
+        min-width: 1.35rem;
+        color: #6e8490;
+        font: 700 0.72rem var(--mono);
+      }
+      .exercise-strip {
+        display: flex;
+        overflow-x: auto;
+        background: #0e181e;
+      }
+      .exercise-strip button {
+        min-width: 3.1rem;
+        border: 0;
+        border-right: 1px solid rgba(255, 255, 255, 0.12);
+        padding: 0.7rem 1rem;
+        color: #b9c7cf;
+        background: transparent;
+        font: 0.78rem var(--mono);
+        cursor: pointer;
+      }
+      .exercise-strip button[aria-pressed="true"] {
+        color: #fff;
+        background: #1b333f;
+        box-shadow:
+          inset 0 2px 0 var(--amber),
+          inset 0 -2px 0 rgba(143, 185, 203, 0.35);
+        font-weight: 800;
+      }
+      .exercise-strip button:hover,
+      .exercise-strip button:focus-visible {
+        color: #fff;
+        background: #17242d;
+      }
+      .exercise-strip button[aria-pressed="true"]:hover,
+      .exercise-strip button[aria-pressed="true"]:focus-visible {
+        background: #244451;
+      }
+      .rail .course-nav.hints p code {
+        color: #8fb9cb;
+        background: rgba(143, 185, 203, 0.1);
+      }
+      .solution {
+        margin-top: 1.1rem;
+        padding: 0 1.1rem 1.1rem;
+        border-left: 4px solid var(--green);
+        background: var(--mint);
+      }
+      .solution summary {
+        padding: 0.9rem 0;
+        color: var(--green);
+        font: 800 0.72rem var(--mono);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+      .solution .code-block {
+        margin: 0.25rem 0 0;
+      }
+      .solution .code-block code {
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+      }
+      .exercise-hints {
+        margin-top: 1rem;
+        padding: 0.7rem 1rem;
+        border-left: 4px solid var(--amber);
+        background: var(--paper);
+      }
+      .exercise-hints > summary {
+        color: var(--ink);
+        font: 800 0.72rem var(--mono);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+      .exercise-hints details {
+        margin-top: 0.7rem;
+      }
+      .exercise-hints details summary {
+        cursor: pointer;
+        font-weight: 700;
+      }
+      .exercise-hints p {
+        margin: 0.5rem 0 0;
+      }
+      .route {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.25rem 0.5rem;
+        font: 800 0.78rem var(--mono);
+        line-height: 1.65;
+        color: var(--ink);
+      }
+      .route-step {
+        white-space: nowrap;
+      }
+      .route-arrow {
+        margin-left: 0.25rem;
+        color: var(--green);
+      }
+      .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip" href="#sheet">Skip to the sheet</a>
+    <aside class="rail">
+      <div class="brand">
+        <a
+          class="brand-home brand-mark"
+          href="../index.html"
+          aria-label="Supplementary sheets home"
+          >&#9656;</a
+        >
+        <div>
+          <p class="eyebrow">Python · supplementary sheet</p>
+          <p class="brand-name">Reaching In</p>
+        </div>
+      </div>
+      <nav class="course-nav" aria-label="Supplementary sheets">
+        <p>Sheets</p>
+        <ol>
+          <li>
+            <a href="../01-f-prints/index.html"><span>01</span>F-Prints</a>
+          </li>
+          <li>
+            <a href="../02-building/index.html"><span>02</span>Building</a>
+          </li>
+          <li>
+            <a href="index.html" aria-current="page"
+              ><span>03</span>Reaching In</a
+            >
+          </li>
+          <li>
+            <a href="../04-conditionals/index.html"
+              ><span>04</span>Conditionals</a
+            >
+          </li>
+          <li>
+            <a href="../05-loops/index.html"><span>05</span>Loops</a>
+          </li>
+        </ol>
+      </nav>
+      <nav class="course-nav hints" aria-label="Reaching-in reference">
+        <p>Reference</p>
+        <details>
+          <summary>Number or name?</summary>
+          <p>
+            A number asks a list for a position. A quoted name asks a dictionary
+            for a labelled fact.
+          </p>
+        </details>
+        <details>
+          <summary>Read inside-out</summary>
+          <p>
+            Each bracket gives you something new to hold. Ask what that thing is
+            before writing the next bracket.
+          </p>
+        </details>
+        <details>
+          <summary>Quotes mean text</summary>
+          <p>
+            <code>"reg"</code> means the label itself. Without quotes, Python
+            looks for a variable named <code>reg</code>.
+          </p>
+        </details>
+        <details>
+          <summary>What errors tell you</summary>
+          <p>
+            <code>IndexError</code>: no such position. <code>KeyError</code>: no
+            such label. <code>TypeError</code>: the question does not fit the
+            thing you reached.
+          </p>
+        </details>
+      </nav>
+    <a class="rail-capstone" href="../../../Car%20Park%20Practice%20Area/02-nesting/" aria-label="Open the full Car Park Barrier project">
+      <span class="barrier-project-label">The full project</span>
+      <span class="barrier-stage" aria-hidden="true"><span class="barrier-post"></span><span class="barrier-lamp"></span><span class="barrier-arm"></span></span>
+      <span class="barrier-road" aria-hidden="true"><img src="../assets/car-park-road.png" alt=""></span>
+    </a>
+      <a
+        class="rail-tidy"
+        href="https://github.com/TidyWeb"
+        target="_blank"
+        rel="noopener"
+        ><img src="../assets/tidyweb_logo.png" alt="" /><span
+          ><strong>TidyWeb</strong
+          ><small>View this project on GitHub</small></span
+        ></a
+      >
+    </aside>
+    <main>
+      <div class="shell">
+        <article id="sheet" class="drill-reading">
+          <section class="lesson">
+            <div class="lesson-head">
+              <div class="brand-mark" aria-hidden="true">[ ]</div>
+              <div>
+                <p class="lesson-no">SHEET 03 · SCALES</p>
+                <h1 class="intro-title">
+                  <span>Reaching</span><em>into data</em>
+                </h1>
+              </div>
+            </div>
+            <div class="card">
+              <p>
+                This sheet is repetitive on purpose. You are training one small
+                movement until it comes out without thinking, and that means
+                doing it more times than feels interesting. It gets worse before
+                it gets better. Stick with it.
+              </p>
+              <p class="card-label">The map</p>
+              <div
+                class="route"
+                aria-label="position or label, then two brackets deep, then repeat the full address, then name one vehicle, then calculate one charge, then diagnose a wrong question, then navigate cold"
+              >
+                <span class="route-step"
+                  >position or label<span class="route-arrow" aria-hidden="true"
+                    >→</span
+                  ></span
+                ><span class="route-step"
+                  >two brackets deep<span class="route-arrow" aria-hidden="true"
+                    >→</span
+                  ></span
+                ><span class="route-step"
+                  >repeat the full address<span
+                    class="route-arrow"
+                    aria-hidden="true"
+                    >→</span
+                  ></span
+                ><span class="route-step"
+                  >name one vehicle<span class="route-arrow" aria-hidden="true"
+                    >→</span
+                  ></span
+                ><span class="route-step"
+                  >calculate one charge<span
+                    class="route-arrow"
+                    aria-hidden="true"
+                    >→</span
+                  ></span
+                ><span class="route-step"
+                  >diagnose a wrong question<span
+                    class="route-arrow"
+                    aria-hidden="true"
+                    >→</span
+                  ></span
+                ><span class="route-step">navigate cold</span>
+              </div>
+              <p>Each exercise stands alone. Stop anywhere, come back later.</p>
+            </div>
+            <div class="card">
+              <p class="card-label">One bracket, two questions</p>
+              <p>
+                Lists count from zero: <code>0</code> means the first vehicle,
+                <code>1</code> the second. A number in square brackets asks for
+                a position. A quoted name in square brackets asks for a label.
+              </p>
+              <p>
+                You do not have to build anything on this sheet. The lists and
+                dictionaries are provided so you can concentrate on reaching
+                into them. This sheet uses bare
+                <code>print(...)</code> throughout: no f-strings here.
+              </p>
+            </div>
+
+            <h2 class="section-heading">
+              <span class="section-glyph">▸</span>Position, then label
+            </h2>
+            <section id="exercise-01" class="card">
+              <p class="card-label">Exercise 01</p>
+              <p>
+                The same square brackets ask two different questions, depending
+                on what is inside them. First reach for a whole vehicle by
+                position; then ask that vehicle for its registration.
+              </p>
+              <p>
+                Use two <code>print</code> commands: first print the whole first
+                vehicle; then print the first vehicle’s registration.
+              </p>
+              <p class="card-label">Given</p>
+              <pre class="code-block"><code>vehicles = [
+    {"reg": "LT19 KFN", "hours": 4},
+    {"reg": "YB70 XCE", "hours": 6},
+    {"reg": "PK21 RAV", "hours": 1},
+]</code></pre>
+              <p class="card-label">Expected output</p>
+              <pre
+                class="code-block code-block--out"
+              ><code>{'reg': 'LT19 KFN', 'hours': 4}
+LT19 KFN</code></pre>
+              <details class="exercise-hints">
+                <summary>Stuck?</summary>
+                <details>
+                  <summary>The question</summary>
+                  <p>Which number means the first position in a list?</p>
+                </details>
+                <details>
+                  <summary>The shape</summary>
+                  <p><code>print(vehicles[____])</code></p>
+                </details>
+                <details>
+                  <summary>Working answer</summary>
+                  <p>
+                    Use <code>0</code> for the first vehicle. Then add
+                    <code>["reg"]</code> to ask it for the registration.
+                  </p>
+                </details>
+              </details>
+              <details class="solution">
+                <summary>Show a working answer</summary>
+                <pre class="code-block"><code>print(vehicles[0])
+print(vehicles[0]["reg"])</code></pre>
+              </details>
+            </section>
+
+            <h2 class="section-heading">
+              <span class="section-glyph">→</span>Two deep, moving around
+            </h2>
+            <section id="exercise-02" class="card">
+              <p class="card-label">Exercise 02</p>
+              <p>
+                The first bracket hands you a whole vehicle. The second asks
+                that vehicle a question. Read it inside-out: get the vehicle,
+                then get the fact.
+              </p>
+              <p>
+                Use three <code>print</code> commands, one for each requested
+                value: the first vehicle’s registration; the third vehicle’s
+                hours; the second vehicle’s registration.
+              </p>
+              <p class="card-label">Given</p>
+              <pre class="code-block"><code>vehicles = [
+    {"reg": "LT19 KFN", "hours": 4},
+    {"reg": "YB70 XCE", "hours": 6},
+    {"reg": "PK21 RAV", "hours": 1},
+]</code></pre>
+              <p class="card-label">Expected output</p>
+              <pre class="code-block code-block--out"><code>LT19 KFN
+1
+YB70 XCE</code></pre>
+              <details class="exercise-hints">
+                <summary>Stuck?</summary>
+                <details>
+                  <summary>The question</summary>
+                  <p>
+                    Count the position first. Then ask for the named fact from
+                    that one vehicle.
+                  </p>
+                </details>
+                <details>
+                  <summary>The shape</summary>
+                  <p><code>print(vehicles[____]["____"])</code></p>
+                </details>
+                <details>
+                  <summary>Working answer</summary>
+                  <p>
+                    List positions are <code>0</code>, <code>1</code>, then
+                    <code>2</code>; the labels are <code>"reg"</code> and
+                    <code>"hours"</code>.
+                  </p>
+                </details>
+              </details>
+              <details class="solution">
+                <summary>Show a working answer</summary>
+                <pre class="code-block"><code>print(vehicles[0]["reg"])
+print(vehicles[2]["hours"])
+print(vehicles[1]["reg"])</code></pre>
+              </details>
+            </section>
+
+            <h2 class="section-heading">
+              <span class="section-glyph">✱</span>The same vehicle, three times
+              over
+            </h2>
+            <section id="exercise-03" class="card">
+              <p class="card-label">Exercise 03</p>
+              <p>
+                Same reach, the same two facts, one vehicle. Type the full
+                address each time.
+              </p>
+              <p>
+                This one is the repetitive one. Rather than typing all three
+                lines and then running, type one print line, hit Run, and look
+                at what comes back. Check it against the expected output. If it
+                is wrong, you know exactly which line caused it. Then type the
+                next one.
+              </p>
+              <p>
+                Finding a mistake on the line that made it is far easier than
+                typing the whole block and hunting for the fault afterwards.
+              </p>
+              <p>
+                Use three <code>print</code> commands to print the second
+                vehicle’s registration, hours, then registration again, each on
+                its own line.
+              </p>
+              <p class="card-label">Given</p>
+              <pre class="code-block"><code>vehicles = [
+    {"reg": "LT19 KFN", "hours": 4},
+    {"reg": "YB70 XCE", "hours": 6},
+    {"reg": "PK21 RAV", "hours": 1},
+]</code></pre>
+              <p class="card-label">Expected output</p>
+              <pre class="code-block code-block--out"><code>YB70 XCE
+6
+YB70 XCE</code></pre>
+              <details class="solution">
+                <summary>Show a working answer</summary>
+                <pre class="code-block"><code>print(vehicles[1]["reg"])
+print(vehicles[1]["hours"])
+print(vehicles[1]["reg"])</code></pre>
+              </details>
+            </section>
+
+            <h2 class="section-heading">
+              <span class="section-glyph">→</span>Give it a shorter name
+            </h2>
+            <section id="exercise-04" class="card">
+              <p class="card-label">Exercise 04</p>
+              <p>
+                That was tedious. Every line repeated the same first half before
+                getting to the part that actually differed.
+              </p>
+              <p>Two things fix it.</p>
+              <p>Pull the vehicle out once, into a name of its own:</p>
+              <pre class="code-block"><code>vehicle = vehicles[1]</code></pre>
+              <p>
+                Then <code>print</code> takes several things at once, separated
+                by commas, and puts a space between them:
+              </p>
+              <pre
+                class="code-block"
+              ><code>print(vehicle["reg"], vehicle["hours"])</code></pre>
+              <p>Two long lines become two short ones.</p>
+              <p class="card-label">Given</p>
+              <pre class="code-block"><code>vehicles = [
+    {"reg": "LT19 KFN", "hours": 4},
+    {"reg": "YB70 XCE", "hours": 6},
+    {"reg": "PK21 RAV", "hours": 1},
+]</code></pre>
+              <p class="card-label">Expected output</p>
+              <pre
+                class="code-block code-block--out"
+              ><code>YB70 XCE 6</code></pre>
+              <details class="exercise-hints">
+                <summary>Stuck?</summary>
+                <details>
+                  <summary>The question</summary>
+                  <p>Which position gave you these facts in Exercise 03?</p>
+                </details>
+                <details>
+                  <summary>The shape</summary>
+                  <p><code>vehicle = vehicles[____]</code></p>
+                </details>
+                <details>
+                  <summary>Working answer</summary>
+                  <p>
+                    After that first line, use one <code>print</code> with the
+                    two facts, separated by commas.
+                  </p>
+                </details>
+              </details>
+              <details class="solution">
+                <summary>Show a working answer</summary>
+                <pre class="code-block"><code>vehicle = vehicles[1]
+print(vehicle["reg"], vehicle["hours"])</code></pre>
+              </details>
+            </section>
+
+            <h2 class="section-heading">
+              <span class="section-glyph">↓</span>Calculate a charge
+            </h2>
+            <section id="exercise-05" class="card">
+              <p class="card-label">Exercise 05</p>
+              <p>
+                The first hour is free. Each hour after that costs £2. Work out
+                what <code>LT19 KFN</code> owes from each of these two supplied
+                shapes.
+              </p>
+              <p>
+                Use two <code>print</code> commands. First reach
+                <code>LT19 KFN</code> in the list; then reach it in the
+                dictionary keyed by registration. Calculate its fee both times
+                and print the number. Do not use an f-string.
+              </p>
+              <p class="card-label">List of vehicles</p>
+              <pre class="code-block"><code>vehicles = [
+    {"reg": "LT19 KFN", "hours": 4},
+    {"reg": "YB70 XCE", "hours": 6},
+    {"reg": "PK21 RAV", "hours": 1},
+]</code></pre>
+              <p class="card-label">Vehicles keyed by registration</p>
+              <pre class="code-block"><code>vehicles_by_reg = {
+    "LT19 KFN": {"hours": 4},
+    "YB70 XCE": {"hours": 6},
+    "PK21 RAV": {"hours": 1},
+}</code></pre>
+              <p class="card-label">Expected output</p>
+              <pre class="code-block code-block--out"><code>6
+6</code></pre>
+              <details class="exercise-hints">
+                <summary>Stuck?</summary>
+                <details>
+                  <summary>The question</summary>
+                  <p>
+                    Get the hours first. The first hour is free, so subtract one
+                    before multiplying by <code>2</code>.
+                  </p>
+                </details>
+                <details>
+                  <summary>The shape</summary>
+                  <p><code>print((vehicles[____]["hours"] - 1) * 2)</code></p>
+                </details>
+                <details>
+                  <summary>Working answer</summary>
+                  <p>
+                    In the keyed dictionary, the registration replaces the list
+                    position: <code>vehicles_by_reg["LT19 KFN"]["hours"]</code>.
+                  </p>
+                </details>
+              </details>
+              <details class="solution">
+                <summary>Show a working answer</summary>
+                <pre
+                  class="code-block"
+                ><code>print((vehicles[0]["hours"] - 1) * 2)
+print((vehicles_by_reg["LT19 KFN"]["hours"] - 1) * 2)</code></pre>
+              </details>
+            </section>
+
+            <h2 class="section-heading">
+              <span class="section-glyph">!</span>Ask the wrong question
+            </h2>
+            <section id="exercise-06" class="card">
+              <p class="card-label">Exercise 06</p>
+              <p>
+                Each reach can fail because it asks the wrong question. Predict
+                what will go wrong, then remove the <code>#</code> from one line
+                at a time and run it.
+              </p>
+              <p>
+                For each line, read the error and say whether the position,
+                label, or type of thing being questioned is wrong.
+              </p>
+              <p class="card-label">Given</p>
+              <pre class="code-block"><code>vehicles = [
+    {"reg": "LT19 KFN", "hours": 4},
+    {"reg": "YB70 XCE", "hours": 6},
+    {"reg": "PK21 RAV", "hours": 1},
+]
+
+# print(vehicles[5])
+# print(vehicles[0]["registration"])
+# print(vehicles[0]["reg"]["hours"])
+# print(vehicles["0"])</code></pre>
+              <details class="exercise-hints">
+                <summary>Stuck?</summary>
+                <details>
+                  <summary>The question</summary>
+                  <p>
+                    Before each bracket, ask what kind of thing you are holding:
+                    list, dictionary, or text.
+                  </p>
+                </details>
+                <details>
+                  <summary>The shape</summary>
+                  <p>
+                    A list accepts a number. A dictionary accepts a quoted
+                    label. Text does not contain vehicle facts.
+                  </p>
+                </details>
+                <details>
+                  <summary>Working answer</summary>
+                  <p>
+                    Try one line at a time. The errors are two
+                    <code>TypeError</code>s, one <code>IndexError</code>, and
+                    one <code>KeyError</code>.
+                  </p>
+                </details>
+              </details>
+              <details class="solution">
+                <summary>What each error means</summary>
+                <p>
+                  <code>vehicles[5]</code>: no sixth position.
+                  <code>vehicles[0]["registration"]</code>: no label with that
+                  name. <code>vehicles[0]["reg"]["hours"]</code>: the
+                  registration is text, not another vehicle.
+                  <code>vehicles["0"]</code>: a list needs a number, not a
+                  quoted label.
+                </p>
+              </details>
+            </section>
+
+            <h2 class="section-heading">
+              <span class="section-glyph">✓</span>Navigate cold
+            </h2>
+            <section id="exercise-07" class="card">
+              <p class="card-label">Exercise 07</p>
+              <p>
+                This structure has not appeared before, but every reach is
+                familiar. Read one bracket at a time and keep asking what you
+                now hold.
+              </p>
+              <p>
+                Use three <code>print</code> commands to print the customer’s
+                name, the number of apples in their basket, and their second
+                recent visit, each on its own line.
+              </p>
+              <p class="card-label">Given</p>
+              <pre class="code-block"><code>customer = {
+    "name": "Marjorie",
+    "basket": {"apples": 4, "pears": 2},
+    "recent_visits": ["Monday", "Thursday"],
+}</code></pre>
+              <p class="card-label">Expected output</p>
+              <pre class="code-block code-block--out"><code>Marjorie
+4
+Thursday</code></pre>
+              <details class="exercise-hints">
+                <summary>Stuck?</summary>
+                <details>
+                  <summary>The question</summary>
+                  <p>
+                    The customer is a dictionary. <code>"basket"</code> gives
+                    another dictionary; <code>"recent_visits"</code> gives a
+                    list.
+                  </p>
+                </details>
+                <details>
+                  <summary>The shape</summary>
+                  <p>
+                    <code>print(customer["____"])</code> then add another
+                    bracket only when the first reach gives a container.
+                  </p>
+                </details>
+                <details>
+                  <summary>Working answer</summary>
+                  <p>
+                    The labels you need are <code>"name"</code>,
+                    <code>"basket"</code>, <code>"apples"</code>, and
+                    <code>"recent_visits"</code>. The second list position is
+                    <code>1</code>.
+                  </p>
+                </details>
+              </details>
+              <details class="solution">
+                <summary>Show a working answer</summary>
+                <pre class="code-block"><code>print(customer["name"])
+print(customer["basket"]["apples"])
+print(customer["recent_visits"][1])</code></pre>
+              </details>
+            </section>
+
+            <h2 class="section-heading">
+              <span class="section-glyph">✓</span>What this unlocks
+            </h2>
+            <div class="card">
+              <p>
+                Each bracket travels one level down. This is a complete address:
+                customer → basket → apples.
+              </p>
+              <pre class="code-block"><code>customer = {"basket": {"apples": 4}}
+print(customer["basket"]["apples"])</code></pre>
+              <pre class="code-block code-block--out"><code>4</code></pre>
+            </div>
+            <div class="catalogue-wrap">
+              <table class="catalogue">
+                <thead>
+                  <tr>
+                    <th>If you have</th>
+                    <th>Ask with</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>A list</td>
+                    <td>A number for its position</td>
+                  </tr>
+                  <tr>
+                    <td>A dictionary</td>
+                    <td>A quoted label for its fact</td>
+                  </tr>
+                  <tr>
+                    <td>Text</td>
+                    <td>Stop: text does not hold labelled vehicle facts</td>
+                  </tr>
+                  <tr>
+                    <td>Several brackets</td>
+                    <td>Read inside-out; every bracket goes down one level</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <nav class="chapter-nav" aria-label="Next sheet">
+            <a class="chap-next" href="../04-conditionals/index.html"
+              ><span>Next sheet</span
+              ><strong>Sheet 04 — Conditionals</strong></a
+            >
+          </nav>
+        </article>
+        <aside class="workbench" aria-label="Python workbench">
+          <div class="workbench-header">
+            <div>
+              <p class="workbench-label">Python workbench</p>
+              <p class="runner-status">
+                Click the tab that relates to your question.
+              </p>
+              <span
+                id="runner-status"
+                class="visually-hidden"
+                aria-live="polite"
+                >Ready</span
+              >
+            </div>
+            <div class="workbench-actions">
+              <button id="run-code" class="run-button" type="button">
+                Run code <kbd>Ctrl ↵</kbd>
+              </button>
+            </div>
+          </div>
+          <div class="editor-panel">
+            <div
+              id="exercise-strip"
+              class="exercise-strip"
+              aria-label="Choose an exercise"
+            ></div>
+            <textarea
+              id="code-editor"
+              class="code-editor"
+              spellcheck="false"
+            ></textarea>
+          </div>
+          <div class="console-panel">
+            <div class="console-heading">
+              <span>Console</span
+              ><button id="clear-console" type="button">Clear</button>
+            </div>
+            <pre id="console-output" class="console-output" aria-live="polite">
+Choose an exercise, then type your line.</pre>
+          </div>
+          <p class="workbench-help">
+            Choose an exercise to begin again. It replaces the code in the
+            editor.
+          </p>
+        </aside>
+      </div>
+      <footer><p>Supplementary Sheets · Reaching In</p></footer>
+    </main>
+    <script src="../assets/pyodide-runner.js?v=supplementary-sheets-20260729"></script>
+    <script
+      charset="utf-8"
+      src="app.js?v=supplementary-sheets-20260729-navigation-fix"
+    ></script>
+    <script src="../assets/barrier-link.js"></script>
+  </body>
+</html>

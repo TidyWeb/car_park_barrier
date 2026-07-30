@@ -1,0 +1,815 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="A short Python conditionals practice sheet."
+    />
+    <title>Conditionals — Supplementary Sheet</title>
+    <link rel="stylesheet" href="../assets/drills.css?v=barrier-bottom-group-20260729" />
+    <link
+      rel="stylesheet"
+      href="../assets/workbench.css?v=supplementary-sheets-20260729"
+    />
+    <style>
+      .sheet-pending {
+        display: flex;
+        gap: 0.8rem;
+        align-items: center;
+        padding: 0.64rem 0.4rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        color: #8fa2ad;
+        font-size: 0.84rem;
+      }
+      .sheet-pending span {
+        min-width: 1.35rem;
+        color: #6e8490;
+        font: 700 0.72rem var(--mono);
+      }
+      .exercise-strip {
+        display: flex;
+        overflow-x: auto;
+        background: #0e181e;
+      }
+      .exercise-strip button {
+        min-width: 3.1rem;
+        border: 0;
+        border-right: 1px solid rgba(255, 255, 255, 0.12);
+        padding: 0.7rem 1rem;
+        color: #b9c7cf;
+        background: transparent;
+        font: 0.78rem var(--mono);
+        cursor: pointer;
+      }
+      .exercise-strip button[aria-pressed="true"] {
+        color: #fff;
+        background: #1b333f;
+        box-shadow:
+          inset 0 2px 0 var(--amber),
+          inset 0 -2px 0 rgba(143, 185, 203, 0.35);
+        font-weight: 800;
+      }
+      .exercise-strip button:hover,
+      .exercise-strip button:focus-visible {
+        color: #fff;
+        background: #17242d;
+      }
+      .exercise-strip button[aria-pressed="true"]:hover,
+      .exercise-strip button[aria-pressed="true"]:focus-visible {
+        background: #244451;
+      }
+      .rail .course-nav.hints p code {
+        color: #8fb9cb;
+        background: rgba(143, 185, 203, 0.1);
+      }
+      .solution {
+        margin-top: 1.1rem;
+        padding: 0 1.1rem 1.1rem;
+        border-left: 4px solid var(--green);
+        background: var(--mint);
+      }
+      .solution summary {
+        padding: 0.9rem 0;
+        color: var(--green);
+        font: 800 0.72rem var(--mono);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+      .solution .code-block {
+        margin: 0.25rem 0 0;
+      }
+      .solution .code-block code {
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+      }
+      .exercise-hints {
+        margin-top: 1rem;
+        padding: 0.7rem 1rem;
+        border-left: 4px solid var(--amber);
+        background: var(--paper);
+      }
+      .exercise-hints > summary {
+        color: var(--ink);
+        font: 800 0.72rem var(--mono);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+      .exercise-hints details {
+        margin-top: 0.7rem;
+      }
+      .exercise-hints details summary {
+        cursor: pointer;
+        font-weight: 700;
+      }
+      .exercise-hints p {
+        margin: 0.5rem 0 0;
+      }
+      .route {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.25rem 0.5rem;
+        font: 800 0.78rem var(--mono);
+        line-height: 1.65;
+        color: var(--ink);
+      }
+      .route-step {
+        white-space: nowrap;
+      }
+      .route-arrow {
+        margin-left: 0.25rem;
+        color: var(--green);
+      }
+      .punctuation {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 0.3rem 0.8rem;
+        font: 700 0.82rem var(--mono);
+      }
+      .punctuation code {
+        color: var(--green);
+      }
+      .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip" href="#sheet">Skip to the sheet</a>
+    <aside class="rail">
+      <div class="brand">
+        <a
+          class="brand-home brand-mark"
+          href="../index.html"
+          aria-label="Supplementary sheets home"
+          >&#9656;</a
+        >
+        <div>
+          <p class="eyebrow">Python · supplementary sheet</p>
+          <p class="brand-name">Conditionals</p>
+        </div>
+      </div>
+      <nav class="course-nav" aria-label="Supplementary sheets">
+        <p>Sheets</p>
+        <ol>
+          <li>
+            <a href="../01-f-prints/index.html"><span>01</span>F-Prints</a>
+          </li>
+          <li>
+            <a href="../02-building/index.html"><span>02</span>Building</a>
+          </li>
+          <li>
+            <a href="../03-reaching-in/index.html"
+              ><span>03</span>Reaching In</a
+            >
+          </li>
+          <li>
+            <a href="index.html" aria-current="page"
+              ><span>04</span>Conditionals</a
+            >
+          </li>
+          <li>
+            <a href="../05-loops/index.html"><span>05</span>Loops</a>
+          </li>
+        </ol>
+      </nav>
+      <nav class="course-nav hints" aria-label="Conditionals reference">
+        <p>Reference</p>
+        <details>
+          <summary>One question</summary>
+          <p>
+            <code>if</code> asks a question. Its indented lines run only when
+            the answer is true.
+          </p>
+        </details>
+        <details>
+          <summary>A chain</summary>
+          <p>
+            A chain stops at its first true question. Ask the widest question
+            last.
+          </p>
+        </details>
+        <details>
+          <summary>Independent decisions</summary>
+          <p>
+            Can both facts be true? Use two independent <code>if</code>s. An
+            <code>elif</code> would silently skip the second question.
+          </p>
+        </details>
+        <details>
+          <summary>One question inside another</summary>
+          <p>
+            If a second question matters only after the first answer, indent it
+            inside the first one.
+          </p>
+        </details>
+        <details>
+          <summary>Check the limit</summary>
+          <p>
+            Use the value exactly on the limit to check whether you need
+            <code>&gt;</code> or <code>&gt;=</code>.
+          </p>
+        </details>
+        <details>
+          <summary>Silent logic</summary>
+          <p>
+            Wrong logic prints the wrong sentence, or nothing at all. Python
+            does not complain.
+          </p>
+        </details>
+      </nav>
+    <a class="rail-capstone" href="../../../Car%20Park%20Practice%20Area/02-nesting/" aria-label="Open the full Car Park Barrier project">
+      <span class="barrier-project-label">The full project</span>
+      <span class="barrier-stage" aria-hidden="true"><span class="barrier-post"></span><span class="barrier-lamp"></span><span class="barrier-arm"></span></span>
+      <span class="barrier-road" aria-hidden="true"><img src="../assets/car-park-road.png" alt=""></span>
+    </a>
+      <a
+        class="rail-tidy"
+        href="https://github.com/TidyWeb"
+        target="_blank"
+        rel="noopener"
+        ><img src="../assets/tidyweb_logo.png" alt="" /><span
+          ><strong>TidyWeb</strong
+          ><small>View this project on GitHub</small></span
+        ></a
+      >
+    </aside>
+    <main>
+      <div class="shell">
+        <article id="sheet" class="drill-reading">
+          <section class="lesson">
+            <div class="lesson-head">
+              <div class="brand-mark" aria-hidden="true">if</div>
+              <div>
+                <p class="lesson-no">SHEET 04 · SCALES</p>
+                <h1 class="intro-title">
+                  <span>Making a</span><em>decision</em>
+                </h1>
+              </div>
+            </div>
+            <div class="card">
+              <p>
+                A barrier has to decide something before it does anything. It
+                asks questions in a chosen order, then runs the lines that fit
+                the answer.
+              </p>
+              <pre class="code-block"><code>height = 1.6
+
+if height &gt;= 2.0:
+    print("Too tall for the barrier")
+else:
+    print("Barrier opening")</code></pre>
+              <pre
+                class="code-block code-block--out"
+              ><code>Barrier opening</code></pre>
+              <div class="punctuation">
+                <code>if</code
+                ><span>asks a question that is either true or false</span
+                ><code>:</code><span>ends the question</span><code>indent</code
+                ><span>the lines that run only when the answer was true</span
+                ><code>else</code><span>what happens when it was not</span>
+              </div>
+              <p>
+                Nothing on this sheet will raise an error. If the wrong sentence
+                appears, or none appears at all, Python has done exactly what it
+                was told.
+              </p>
+              <p>
+                Type one line and run it before writing the next one. The output
+                tells you which line caused a mistake.
+              </p>
+              <p class="card-label">The map</p>
+              <div
+                class="route"
+                aria-label="one question, a chain, a limit, independent decisions, a dependent question, then all three vehicles"
+              >
+                <span class="route-step"
+                  >one question<span class="route-arrow" aria-hidden="true"
+                    >→</span
+                  ></span
+                ><span class="route-step"
+                  >a chain<span class="route-arrow" aria-hidden="true"
+                    >→</span
+                  ></span
+                ><span class="route-step"
+                  >a limit<span class="route-arrow" aria-hidden="true"
+                    >→</span
+                  ></span
+                ><span class="route-step"
+                  >independent decisions<span
+                    class="route-arrow"
+                    aria-hidden="true"
+                    >→</span
+                  ></span
+                ><span class="route-step"
+                  >a dependent question<span
+                    class="route-arrow"
+                    aria-hidden="true"
+                    >→</span
+                  ></span
+                ><span class="route-step">three vehicles</span>
+              </div>
+              <p>Each exercise stands alone. Stop anywhere and return later.</p>
+            </div>
+
+            <h2 class="section-heading">
+              <span class="section-glyph">▸</span>One question
+            </h2>
+            <section id="exercise-01" class="card">
+              <p class="card-label">Exercise 01</p>
+              <p>
+                An <code>if</code> is a question. When the answer is false, its
+                indented lines are skipped. Nothing happens: no message and no
+                complaint.
+              </p>
+              <p>
+                Print <code>"Too tall for the barrier"</code> when the height is
+                over 2.0. Run it. Then change the height to <code>1.4</code> and
+                run it again: nothing should appear.
+              </p>
+              <p>
+                Then add an <code>else</code> that prints
+                <code>"Barrier opening"</code>, and run both heights again.
+              </p>
+              <p class="card-label">Given</p>
+              <pre
+                class="code-block"
+              ><code>vehicle = {"reg": "YB70 XCE", "height": 2.4}</code></pre>
+              <p class="card-label">Expected output, tall</p>
+              <pre
+                class="code-block code-block--out"
+              ><code>Too tall for the barrier</code></pre>
+              <p class="card-label">Expected output, low</p>
+              <pre
+                class="code-block code-block--out"
+              ><code>Barrier opening</code></pre>
+              <details class="exercise-hints">
+                <summary>Stuck?</summary>
+                <p>
+                  What comparison is true only when the stored height is above
+                  2.0?
+                </p>
+              </details>
+              <details class="exercise-hints">
+                <summary>The shape</summary>
+                <pre class="code-block"><code>if vehicle["height"] ____ 2.0:
+    print("Too tall for the barrier")
+else:
+    print("Barrier opening")</code></pre>
+              </details>
+              <details class="solution">
+                <summary>Working answer</summary>
+                <pre class="code-block"><code>if vehicle["height"] &gt; 2.0:
+    print("Too tall for the barrier")
+else:
+    print("Barrier opening")</code></pre>
+              </details>
+            </section>
+
+            <h2 class="section-heading">
+              <span class="section-glyph">→</span>A chain chooses one answer
+            </h2>
+            <section id="exercise-02" class="card">
+              <p class="card-label">Exercise 02</p>
+              <p>
+                When questions are chained, Python asks them from the top and
+                stops at the first true one. Everything below is skipped,
+                however true it might be.
+              </p>
+              <p>
+                A five-hour stay should use the long stay rate, but this code
+                prints the standard rate. Reorder the questions so it is right.
+              </p>
+              <p class="card-label">Given</p>
+              <pre class="code-block"><code>stay = 5
+
+if stay &gt; 1:
+    print("Standard rate")
+elif stay &gt; 4:
+    print("Long stay rate")
+else:
+    print("Free")</code></pre>
+              <p class="card-label">Expected output</p>
+              <pre
+                class="code-block code-block--out"
+              ><code>Long stay rate</code></pre>
+              <p>
+                The widest question is asked last, because it catches everything
+                that reaches it.
+              </p>
+              <details class="exercise-hints">
+                <summary>Stuck?</summary>
+                <p>
+                  Which question must come first so that a five-hour stay does
+                  not stop at the standard rate?
+                </p>
+              </details>
+              <details class="exercise-hints">
+                <summary>The shape</summary>
+                <pre class="code-block"><code>if stay ____ 4:
+    print("Long stay rate")
+elif stay ____ 1:
+    print("Standard rate")
+else:
+    print("Free")</code></pre>
+              </details>
+              <details class="solution">
+                <summary>Working answer</summary>
+                <pre class="code-block"><code>if stay &gt; 4:
+    print("Long stay rate")
+elif stay &gt; 1:
+    print("Standard rate")
+else:
+    print("Free")</code></pre>
+              </details>
+            </section>
+
+            <h2 class="section-heading">
+              <span class="section-glyph">=</span>The value on the limit
+            </h2>
+            <section id="exercise-03" class="card">
+              <p class="card-label">Exercise 03</p>
+              <p>
+                The value exactly on the limit reveals which comparison was
+                written. The obvious cases do not.
+              </p>
+              <pre class="code-block"><code>print(3 &gt; 3)
+print(3 &gt;= 3)</code></pre>
+              <pre class="code-block code-block--out"><code>False
+True</code></pre>
+              <p>
+                Vehicles must be under 2.0 metres to pass. Print the right
+                sentence for this vehicle, then change its height to
+                <code>1.9</code> and <code>2.1</code> to check both sides of the
+                boundary.
+              </p>
+              <p class="card-label">Given</p>
+              <pre
+                class="code-block"
+              ><code>vehicle = {"reg": "PK21 RAV", "height": 2.0}</code></pre>
+              <p class="card-label">Expected output at 2.0</p>
+              <pre
+                class="code-block code-block--out"
+              ><code>Too tall for the barrier</code></pre>
+              <p class="card-label">Expected output at 1.9</p>
+              <pre
+                class="code-block code-block--out"
+              ><code>Barrier opening</code></pre>
+              <p class="card-label">Expected output at 2.1</p>
+              <pre
+                class="code-block code-block--out"
+              ><code>Too tall for the barrier</code></pre>
+              <details class="exercise-hints">
+                <summary>Stuck?</summary>
+                <p>Does “under 2.0” allow a height that is exactly 2.0?</p>
+              </details>
+              <details class="exercise-hints">
+                <summary>The shape</summary>
+                <pre class="code-block"><code>if vehicle["height"] ____ 2.0:
+    print("Too tall for the barrier")
+else:
+    print("Barrier opening")</code></pre>
+              </details>
+              <details class="solution">
+                <summary>Working answer</summary>
+                <pre class="code-block"><code>if vehicle["height"] &gt;= 2.0:
+    print("Too tall for the barrier")
+else:
+    print("Barrier opening")</code></pre>
+              </details>
+            </section>
+
+            <h2 class="section-heading">
+              <span class="section-glyph">+</span>Independent decisions
+            </h2>
+            <section id="exercise-04" class="card">
+              <p class="card-label">Exercise 04</p>
+              <p>
+                An <code>elif</code> belongs to one question with several
+                possible answers. Two questions that have nothing to do with
+                each other each need their own <code>if</code>. Chaining them
+                loses one without saying so.
+              </p>
+              <p>
+                Both facts are true of this vehicle, but the supplied chain
+                reports only one. Separate the questions so both messages
+                appear.
+              </p>
+              <p class="card-label">Given</p>
+              <pre
+                class="code-block"
+              ><code>vehicle = {"reg": "LT19 KFN", "height": 2.4, "permit": False}
+
+if vehicle["height"] &gt; 2.0:
+    print("Use the side entrance")
+elif vehicle["permit"] == False:
+    print("Pay at the machine")</code></pre>
+              <p class="card-label">Expected output</p>
+              <pre
+                class="code-block code-block--out"
+              ><code>Use the side entrance
+Pay at the machine</code></pre>
+              <p>
+                If both could be true at once, they are separate questions. If
+                only one can ever be true, they belong in one chain.
+              </p>
+              <details class="exercise-hints">
+                <summary>Stuck?</summary>
+                <p>Could a tall vehicle also have no permit?</p>
+              </details>
+              <details class="exercise-hints">
+                <summary>The shape</summary>
+                <pre class="code-block"><code>if vehicle["height"] &gt; 2.0:
+    print("Use the side entrance")
+
+if vehicle["permit"] == ____:
+    print("Pay at the machine")</code></pre>
+              </details>
+              <details class="solution">
+                <summary>Working answer</summary>
+                <pre class="code-block"><code>if vehicle["height"] &gt; 2.0:
+    print("Use the side entrance")
+
+if vehicle["permit"] == False:
+    print("Pay at the machine")</code></pre>
+              </details>
+            </section>
+
+            <h2 class="section-heading">
+              <span class="section-glyph">↓</span>One question depends on
+              another
+            </h2>
+            <section id="exercise-05" class="card">
+              <p class="card-label">Exercise 05</p>
+              <p>
+                A permit is a true-or-false fact. <code>True</code> means the
+                vehicle has one; <code>False</code> means it does not.
+              </p>
+              <pre class="code-block"><code>permit = True
+
+if permit:
+    print("Permit accepted")
+else:
+    print("Pay at the machine")</code></pre>
+              <pre
+                class="code-block code-block--out"
+              ><code>Permit accepted</code></pre>
+              <p>
+                For each vehicle, print one appropriate sentence. Use three
+                separate blocks of code: no loop.
+              </p>
+              <p class="card-label">Given</p>
+              <pre
+                class="code-block"
+              ><code>vehicle_one = {"reg": "YB70 XCE", "permit": True}
+vehicle_two = {"reg": "PK21 RAV", "permit": True}
+vehicle_three = {"reg": "LT19 KFN", "permit": False}</code></pre>
+              <p class="card-label">Expected output</p>
+              <pre class="code-block code-block--out"><code>Permit accepted
+Permit accepted
+Pay at the machine</code></pre>
+              <details class="exercise-hints">
+                <summary>Stuck?</summary>
+                <p>
+                  Which value makes the indented line under <code>if</code> run?
+                </p>
+              </details>
+              <details class="exercise-hints">
+                <summary>The shape</summary>
+                <pre class="code-block"><code>if vehicle_one["permit"]:
+    print("Permit accepted")
+else:
+    print("Pay at the machine")</code></pre>
+              </details>
+              <details class="solution">
+                <summary>Working answer</summary>
+                <pre class="code-block"><code>if vehicle_one["permit"]:
+    print("Permit accepted")
+else:
+    print("Pay at the machine")
+
+if vehicle_two["permit"]:
+    print("Permit accepted")
+else:
+    print("Pay at the machine")
+
+if vehicle_three["permit"]:
+    print("Permit accepted")
+else:
+    print("Pay at the machine")</code></pre>
+              </details>
+            </section>
+
+            <h2 class="section-heading">
+              <span class="section-glyph">✓</span>Put the pieces together
+            </h2>
+            <section id="exercise-06" class="card">
+              <p class="card-label">Exercise 06</p>
+              <p>
+                Everything above now applies to three vehicles. The stay-rate
+                chain is: more than four hours is long stay; more than one hour
+                is standard; otherwise it is free. A height of 2.0 metres or
+                more is too tall.
+              </p>
+              <p>
+                For each vehicle, print its registration and rate on one line
+                using an f-string. Then print the height message, if it applies,
+                and its permit message. Type one line and run it before writing
+                the next. That is easier than writing the whole block and
+                hunting for the fault afterwards.
+              </p>
+              <p class="card-label">Given</p>
+              <pre
+                class="code-block"
+              ><code>vehicle_one = {"reg": "LT19 KFN", "height": 2.0, "stay": 5, "permit": False}
+vehicle_two = {"reg": "YB70 XCE", "height": 1.6, "stay": 2, "permit": True}
+vehicle_three = {"reg": "PK21 RAV", "height": 2.4, "stay": 1, "permit": True}</code></pre>
+              <p class="card-label">Expected output</p>
+              <pre
+                class="code-block code-block--out"
+              ><code>LT19 KFN: Long stay rate
+Too tall for the barrier
+Pay at the machine
+YB70 XCE: Standard rate
+Permit accepted
+PK21 RAV: Free
+Too tall for the barrier
+Permit accepted</code></pre>
+              <details class="exercise-hints">
+                <summary>Stuck?</summary>
+                <p>
+                  Work on one vehicle at a time: rate chain, height question,
+                  then permit question.
+                </p>
+              </details>
+              <details class="exercise-hints">
+                <summary>The shape</summary>
+                <pre class="code-block"><code>if vehicle_one["stay"] &gt; ____:
+    print(f"{vehicle_one['reg']}: Long stay rate")
+elif vehicle_one["stay"] &gt; 1:
+    print(f"{vehicle_one['reg']}: Standard rate")
+else:
+    print(f"{vehicle_one['reg']}: Free")</code></pre>
+              </details>
+              <details class="solution">
+                <summary>Working answer</summary>
+                <pre class="code-block"><code>if vehicle_one["stay"] &gt; 4:
+    print(f"{vehicle_one['reg']}: Long stay rate")
+elif vehicle_one["stay"] &gt; 1:
+    print(f"{vehicle_one['reg']}: Standard rate")
+else:
+    print(f"{vehicle_one['reg']}: Free")
+if vehicle_one["height"] &gt;= 2.0:
+    print("Too tall for the barrier")
+if vehicle_one["permit"]:
+    print("Permit accepted")
+else:
+    print("Pay at the machine")
+
+if vehicle_two["stay"] &gt; 4:
+    print(f"{vehicle_two['reg']}: Long stay rate")
+elif vehicle_two["stay"] &gt; 1:
+    print(f"{vehicle_two['reg']}: Standard rate")
+else:
+    print(f"{vehicle_two['reg']}: Free")
+if vehicle_two["height"] &gt;= 2.0:
+    print("Too tall for the barrier")
+if vehicle_two["permit"]:
+    print("Permit accepted")
+else:
+    print("Pay at the machine")
+
+if vehicle_three["stay"] &gt; 4:
+    print(f"{vehicle_three['reg']}: Long stay rate")
+elif vehicle_three["stay"] &gt; 1:
+    print(f"{vehicle_three['reg']}: Standard rate")
+else:
+    print(f"{vehicle_three['reg']}: Free")
+if vehicle_three["height"] &gt;= 2.0:
+    print("Too tall for the barrier")
+if vehicle_three["permit"]:
+    print("Permit accepted")
+else:
+    print("Pay at the machine")</code></pre>
+              </details>
+            </section>
+
+            <h2 class="section-heading">
+              <span class="section-glyph">✓</span>Two shapes of decision
+            </h2>
+            <div class="card">
+              <pre class="code-block"><code>if vehicle["height"] &gt;= 2.0:
+    print("Use the side entrance")
+
+if vehicle["permit"] == False:
+    print("Pay at the machine")</code></pre>
+              <p>
+                Every decision on this sheet was one of two shapes: a chain that
+                picks a single answer, or separate questions that each stand on
+                their own.
+              </p>
+              <p>
+                Nothing here raised an error. A wrong answer looks exactly like
+                a right one until the output is read. The next sheet removes the
+                repetition.
+              </p>
+            </div>
+          </section>
+          <div class="catalogue-wrap">
+            <table class="catalogue">
+              <thead>
+                <tr>
+                  <th>If you need</th>
+                  <th>Then</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>One question</td>
+                  <td>Use <code>if</code> and an indented line</td>
+                </tr>
+                <tr>
+                  <td>One answer from several</td>
+                  <td>Use a chain; ask the widest question last</td>
+                </tr>
+                <tr>
+                  <td>Two facts that can both be true</td>
+                  <td>Use two independent <code>if</code>s</td>
+                </tr>
+                <tr>
+                  <td>A question that only matters later</td>
+                  <td>Put it inside the first <code>if</code></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <nav class="chapter-nav" aria-label="Next sheet">
+            <a class="chap-next" href="../05-loops/index.html"
+              ><span>Next sheet</span><strong>Sheet 05 — Loops</strong></a
+            >
+          </nav>
+        </article>
+        <aside class="workbench" aria-label="Python workbench">
+          <div class="workbench-header">
+            <div>
+              <p class="workbench-label">Python workbench</p>
+              <p class="runner-status">
+                Click the tab that relates to your question.
+              </p>
+              <span
+                id="runner-status"
+                class="visually-hidden"
+                aria-live="polite"
+                >Ready</span
+              >
+            </div>
+            <div class="workbench-actions">
+              <button id="run-code" class="run-button" type="button">
+                Run code <kbd>Ctrl ↵</kbd>
+              </button>
+            </div>
+          </div>
+          <div class="editor-panel">
+            <div
+              id="exercise-strip"
+              class="exercise-strip"
+              aria-label="Choose an exercise"
+            ></div>
+            <textarea
+              id="code-editor"
+              class="code-editor"
+              spellcheck="false"
+            ></textarea>
+          </div>
+          <div class="console-panel">
+            <div class="console-heading">
+              <span>Console</span
+              ><button id="clear-console" type="button">Clear</button>
+            </div>
+            <pre id="console-output" class="console-output" aria-live="polite">
+Choose an exercise, then type your line.</pre>
+          </div>
+          <p class="workbench-help">
+            Choose an exercise to begin again. It replaces the code in the
+            editor.
+          </p>
+        </aside>
+      </div>
+      <footer><p>Supplementary Sheets · Conditionals</p></footer>
+    </main>
+    <script src="../assets/pyodide-runner.js?v=supplementary-sheets-20260729"></script>
+    <script src="app.js?v=supplementary-sheets-20260729-navigation-fix"></script>
+    <script src="../assets/barrier-link.js"></script>
+  </body>
+</html>

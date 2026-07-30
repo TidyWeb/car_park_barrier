@@ -1,0 +1,737 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="A short Python dictionary-building sheet."
+    />
+    <title>Building — Supplementary Sheet</title>
+    <link rel="stylesheet" href="../assets/drills.css?v=barrier-bottom-group-20260729" />
+    <link
+      rel="stylesheet"
+      href="../assets/workbench.css?v=supplementary-sheets-20260729"
+    />
+    <style>
+      .sheet-pending {
+        display: flex;
+        gap: 0.8rem;
+        align-items: center;
+        padding: 0.64rem 0.4rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        color: #8fa2ad;
+        font-size: 0.84rem;
+      }
+      .sheet-pending span {
+        min-width: 1.35rem;
+        color: #6e8490;
+        font: 700 0.72rem var(--mono);
+      }
+      .exercise-strip {
+        display: flex;
+        overflow-x: auto;
+        background: #0e181e;
+      }
+      .exercise-strip button {
+        min-width: 3.1rem;
+        border: 0;
+        border-right: 1px solid rgba(255, 255, 255, 0.12);
+        padding: 0.7rem 1rem;
+        color: #b9c7cf;
+        background: transparent;
+        font: 0.78rem var(--mono);
+        cursor: pointer;
+      }
+      .exercise-strip button[aria-pressed="true"] {
+        color: #fff;
+        background: #1b333f;
+        box-shadow:
+          inset 0 2px 0 var(--amber),
+          inset 0 -2px 0 rgba(143, 185, 203, 0.35);
+        font-weight: 800;
+      }
+      .exercise-strip button:hover,
+      .exercise-strip button:focus-visible {
+        color: #fff;
+        background: #17242d;
+      }
+      .exercise-strip button[aria-pressed="true"]:hover,
+      .exercise-strip button[aria-pressed="true"]:focus-visible {
+        background: #244451;
+      }
+      .rail .course-nav.hints p code {
+        color: #8fb9cb;
+        background: rgba(143, 185, 203, 0.1);
+      }
+      .solution {
+        margin-top: 1.1rem;
+        padding: 0 1.1rem 1.1rem;
+        border-left: 4px solid var(--green);
+        background: var(--mint);
+      }
+      .solution summary {
+        padding: 0.9rem 0;
+        color: var(--green);
+        font: 800 0.72rem var(--mono);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+      .solution .code-block {
+        margin: 0.25rem 0 0;
+      }
+      .solution .code-block code {
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+      }
+      .exercise-hints {
+        margin-top: 1rem;
+        padding: 0.7rem 1rem;
+        border-left: 4px solid var(--amber);
+        background: var(--paper);
+      }
+      .exercise-hints > summary {
+        color: var(--ink);
+        font: 800 0.72rem var(--mono);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+      .exercise-hints details {
+        margin-top: 0.7rem;
+      }
+      .exercise-hints details summary {
+        cursor: pointer;
+        font-weight: 700;
+      }
+      .exercise-hints p {
+        margin: 0.5rem 0 0;
+      }
+      .punctuation {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 0.3rem 0.8rem;
+        font: 700 0.82rem var(--mono);
+      }
+      .punctuation code {
+        color: var(--green);
+      }
+      .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip" href="#sheet">Skip to the sheet</a>
+    <aside class="rail">
+      <div class="brand">
+        <a
+          class="brand-home brand-mark"
+          href="../index.html"
+          aria-label="Supplementary sheets home"
+          >&#9656;</a
+        >
+        <div>
+          <p class="eyebrow">Python · supplementary sheet</p>
+          <p class="brand-name">Building</p>
+        </div>
+      </div>
+      <nav class="course-nav" aria-label="Supplementary sheets">
+        <p>Sheets</p>
+        <ol>
+          <li>
+            <a href="../01-f-prints/index.html"><span>01</span>F-Prints</a>
+          </li>
+          <li>
+            <a href="index.html" aria-current="page"><span>02</span>Building</a>
+          </li>
+          <li>
+            <a href="../03-reaching-in/index.html"
+              ><span>03</span>Reaching In</a
+            >
+          </li>
+          <li>
+            <a href="../04-conditionals/index.html"
+              ><span>04</span>Conditionals</a
+            >
+          </li>
+          <li>
+            <a href="../05-loops/index.html"><span>05</span>Loops</a>
+          </li>
+        </ol>
+      </nav>
+      <nav class="course-nav hints" aria-label="Building reference">
+        <p>Reference</p>
+        <details>
+          <summary>The punctuation jobs</summary>
+          <p>
+            <code>{ }</code> makes the bundle. A quoted label, <code>:</code>,
+            and a value make one fact. A comma separates facts.
+          </p>
+        </details>
+        <details>
+          <summary>Labels and values</summary>
+          <p>
+            Labels are text, so they are quoted. Values keep their real type:
+            numbers are not quoted.
+          </p>
+        </details>
+        <details>
+          <summary>Take or put?</summary>
+          <p>
+            Brackets on the right of <code>=</code> take a value. Brackets on
+            the left select a labelled place to put a value.
+          </p>
+        </details>
+        <details>
+          <summary>Print it whole</summary>
+          <p>
+            Printing a dictionary shows every label and value in the bundle.
+            Python may display text with single quotes even if you typed double
+            quotes.
+          </p>
+        </details>
+      </nav>
+    <a class="rail-capstone" href="../../../Car%20Park%20Practice%20Area/02-nesting/" aria-label="Open the full Car Park Barrier project">
+      <span class="barrier-project-label">The full project</span>
+      <span class="barrier-stage" aria-hidden="true"><span class="barrier-post"></span><span class="barrier-lamp"></span><span class="barrier-arm"></span></span>
+      <span class="barrier-road" aria-hidden="true"><img src="../assets/car-park-road.png" alt=""></span>
+    </a>
+      <a
+        class="rail-tidy"
+        href="https://github.com/TidyWeb"
+        target="_blank"
+        rel="noopener"
+        ><img src="../assets/tidyweb_logo.png" alt="" /><span
+          ><strong>TidyWeb</strong
+          ><small>View this project on GitHub</small></span
+        ></a
+      >
+    </aside>
+    <main>
+      <div class="shell">
+        <article id="sheet" class="drill-reading">
+          <section class="lesson">
+            <div class="lesson-head">
+              <div class="brand-mark" aria-hidden="true">{ }</div>
+              <div>
+                <p class="lesson-no">SHEET 02 · SCALES</p>
+                <h1 class="intro-title">
+                  <span>Building</span><em>a bundle</em>
+                </h1>
+              </div>
+            </div>
+            <div class="card">
+              <p class="card-label">One vehicle, connected facts</p>
+              <p>
+                One vehicle has several connected facts, and they should travel
+                together. A dictionary builds that labelled bundle; Sheet 03
+                reaches back into one once it exists.
+              </p>
+              <pre
+                class="code-block"
+              ><code>vehicle = {"reg": "AB12 CDE", "hours": 2}
+print(vehicle)</code></pre>
+              <pre
+                class="code-block code-block--out"
+              ><code>{'reg': 'AB12 CDE', 'hours': 2}</code></pre>
+              <div class="punctuation">
+                <code>{ }</code><span>starts and ends the bundle</span
+                ><code>"reg"</code
+                ><span>the label — always text, always quoted</span
+                ><code>:</code><span>connects a label to its value</span
+                ><code>,</code><span>separates one fact from the next</span>
+              </div>
+              <p>
+                The bundle keeps those labelled facts together until you need
+                one of them.
+              </p>
+            </div>
+            <div class="card">
+              <p class="card-label">The map</p>
+              <p>
+                gather loose facts → build from a description → keep values real
+                → recognise broken punctuation → add a fact later → gather many
+                vehicles
+              </p>
+              <p>Each exercise stands alone. Stop anywhere, come back later.</p>
+            </div>
+            <h2 class="section-heading">
+              <span class="section-glyph">▸</span>One vehicle, three separate
+              names
+            </h2>
+            <section id="exercise-01" class="card">
+              <p class="card-label">Exercise 01</p>
+              <p>
+                At the moment, the coding window gives you three separate
+                variables for one vehicle:
+              </p>
+              <p class="card-label">Given</p>
+              <pre class="code-block"><code>reg = "LT19 KFN"
+hours = 4
+fee = 4.5</code></pre>
+              <p>
+                If a second vehicle arrives, you need three more variable names
+                to hold its different values:
+              </p>
+              <pre class="code-block"><code>reg_two = "YB70 XCE"
+hours_two = 6
+fee_two = 16.5</code></pre>
+              <p>
+                You cannot use <code>reg</code>, <code>hours</code>, and
+                <code>fee</code> again: that would replace the first vehicle’s
+                values. Every extra vehicle means more separate names to keep
+                track of.
+              </p>
+              <p>
+                Put the first vehicle’s three facts together into one dictionary
+                called <code>vehicle</code>, then print it whole.
+              </p>
+              <p class="card-label">Expected output</p>
+              <pre
+                class="code-block code-block--out"
+              ><code>{'reg': 'LT19 KFN', 'hours': 4, 'fee': 4.5}</code></pre>
+              <details class="exercise-hints">
+                <summary>Stuck?</summary>
+                <details>
+                  <summary>The question</summary>
+                  <p>Which three labelled facts belong together?</p>
+                </details>
+                <details>
+                  <summary>The shape</summary>
+                  <p>
+                    <code
+                      >vehicle = {"____": ____, "____": ____, "____":
+                      ____}</code
+                    >
+                  </p>
+                </details>
+                <details>
+                  <summary>Working answer</summary>
+                  <p>
+                    Use the labels <code>"reg"</code>, <code>"hours"</code>, and
+                    <code>"fee"</code>, then print <code>vehicle</code>.
+                  </p>
+                </details>
+              </details>
+              <details class="solution">
+                <summary>Show a working answer</summary>
+                <pre
+                  class="code-block"
+                ><code>vehicle = {"reg": reg, "hours": hours, "fee": fee}
+print(vehicle)</code></pre>
+              </details>
+              <p>
+                Printing it whole shows every comma, colon, and label. Python
+                displays text with single quotes even though double quotes were
+                typed; both quote kinds mean text.
+              </p>
+            </section>
+            <h2 class="section-heading">
+              <span class="section-glyph">→</span>A second bundle
+            </h2>
+            <section id="exercise-02" class="card">
+              <p class="card-label">Exercise 02</p>
+              <p>
+                The first vehicle’s facts are now in one bundle. The second
+                vehicle needs its own bundle — and this time the labels do not
+                have to change.
+              </p>
+              <p class="card-label">Given</p>
+              <pre
+                class="code-block"
+              ><code>vehicle = {"reg": "LT19 KFN", "hours": 4, "fee": 4.5}</code></pre>
+              <p>
+                Build a second dictionary called <code>vehicle_two</code> from
+                this description:
+              </p>
+              <pre
+                class="code-block"
+              ><code>YB70 XCE, stayed 6 hours, owes 16.50</code></pre>
+              <p>Print it whole.</p>
+              <p class="card-label">Expected output</p>
+              <pre
+                class="code-block code-block--out"
+              ><code>{'reg': 'YB70 XCE', 'hours': 6, 'fee': 16.5}</code></pre>
+              <p>
+                The labels <code>reg</code>, <code>hours</code> and
+                <code>fee</code> appear a second time and nothing is
+                overwritten. They are labels inside a bundle, not names of their
+                own, so each vehicle can use the same three.
+              </p>
+              <p>
+                The label that stored a fact is the label that fetches it back.
+                The bundle first, then square brackets, then the label in
+                quotes.
+              </p>
+              <pre class="code-block"><code>print(vehicle["reg"])</code></pre>
+              <pre
+                class="code-block code-block--out"
+              ><code>LT19 KFN</code></pre>
+              <p>
+                Print the first vehicle’s registration and the second vehicle’s
+                fee.
+              </p>
+              <p class="card-label">Expected output</p>
+              <pre class="code-block code-block--out"><code>LT19 KFN
+16.5</code></pre>
+              <p>
+                Fetching facts back out has more to it than this, and that is
+                what the next sheet covers.
+              </p>
+            </section>
+            <h2 class="section-heading">
+              <span class="section-glyph">✱</span>Values keep their real type
+            </h2>
+            <section id="exercise-03" class="card">
+              <p class="card-label">Exercise 03</p>
+              <p class="card-label">See it once</p>
+              <pre class="code-block"><code>print("3" * 2)
+print(3 * 2)</code></pre>
+              <pre class="code-block code-block--out"><code>33
+6</code></pre>
+              <p>
+                This should report double the hours the vehicle stayed. Run it
+                first. Then fix the dictionary so it reports what it should. Do
+                not change the <code>print</code> line.
+              </p>
+              <p class="card-label">Given</p>
+              <pre
+                class="code-block"
+              ><code>vehicle = {"reg": "PK21 RAV", "hours": "4"}
+
+print(vehicle["hours"] * 2)</code></pre>
+              <p class="card-label">Expected output before the fix</p>
+              <pre class="code-block code-block--out"><code>44</code></pre>
+              <p class="card-label">Expected output after the fix</p>
+              <pre class="code-block code-block--out"><code>8</code></pre>
+              <details class="exercise-hints">
+                <summary>Stuck?</summary>
+                <details>
+                  <summary>The question</summary>
+                  <p>Is the value for hours text, or is it a number?</p>
+                </details>
+                <details>
+                  <summary>The shape</summary>
+                  <p><code>"hours": ____</code></p>
+                </details>
+                <details>
+                  <summary>Working answer</summary>
+                  <p>
+                    Remove the quotes around <code>4</code>. Do not change the
+                    label or the print line.
+                  </p>
+                </details>
+              </details>
+              <details class="solution">
+                <summary>Show a working answer</summary>
+                <pre
+                  class="code-block"
+                ><code>vehicle = {"reg": "PK21 RAV", "hours": 4}
+
+print(vehicle["hours"] * 2)</code></pre>
+              </details>
+              <p>
+                No error is raised. Quotes made the value text, and text repeats
+                instead of multiplying.
+              </p>
+            </section>
+            <h2 class="section-heading">
+              <span class="section-glyph">!</span>Spot the construction fault
+            </h2>
+            <section id="exercise-04" class="card">
+              <p class="card-label">Exercise 04</p>
+              <p class="card-label">See it once</p>
+              <pre
+                class="code-block"
+              ><code>vehicle = {"reg": "ZX11 ABC", "hours": 2}
+print(vehicle)</code></pre>
+              <pre
+                class="code-block code-block--out"
+              ><code>{'reg': 'ZX11 ABC', 'hours': 2}</code></pre>
+              <p>
+                Remove the <code>#</code> from the first line and run it. Read
+                what Python says, then fix it. Comment it out again, uncomment
+                the second line, and do the same.
+              </p>
+              <p class="card-label">Given</p>
+              <pre
+                class="code-block"
+              ><code># vehicle = {"reg": "LT19 KFN" "hours": 4}
+# vehicle = {"reg" "LT19 KFN", "hours": 4}</code></pre>
+              <details class="exercise-hints">
+                <summary>Stuck?</summary>
+                <details>
+                  <summary>The question</summary>
+                  <p>
+                    What separates facts? What connects a label to its value?
+                  </p>
+                </details>
+                <details>
+                  <summary>The shape</summary>
+                  <p><code>{"reg": "LT19 KFN", "hours": 4}</code></p>
+                </details>
+                <details>
+                  <summary>Working answer</summary>
+                  <p>
+                    The first line needs a comma between facts. The second needs
+                    a colon after <code>"reg"</code>.
+                  </p>
+                </details>
+              </details>
+              <details class="solution">
+                <summary>Show both corrected lines</summary>
+                <pre
+                  class="code-block"
+                ><code>vehicle = {"reg": "LT19 KFN", "hours": 4}
+vehicle = {"reg": "LT19 KFN", "hours": 4}</code></pre>
+              </details>
+              <p>
+                Both complaints are about the shape that was typed. Python is
+                not confused about the vehicle; it cannot finish reading the
+                line.
+              </p>
+            </section>
+            <h2 class="section-heading">
+              <span class="section-glyph">+</span>Add a fact after the event
+            </h2>
+            <section id="exercise-05" class="card">
+              <p class="card-label">Exercise 05</p>
+              <p>
+                <strong>Read <code>=</code> right-side first.</strong> Work out
+                the value on the right, then put it into the slot named on the
+                left. The only change is that the slot is now inside a
+                dictionary rather than a name of its own.
+              </p>
+              <p class="card-label">See it once</p>
+              <pre class="code-block"><code>parcel = {"weight": 2}
+parcel["zone"] = "local"
+print(parcel)</code></pre>
+              <pre
+                class="code-block code-block--out"
+              ><code>{'weight': 2, 'zone': 'local'}</code></pre>
+              <p>
+                Work out the fee from hours and rate, put it into
+                <code>vehicle</code> under the label <code>"fee"</code>, then
+                print the whole vehicle.
+              </p>
+              <p class="card-label">Given</p>
+              <pre
+                class="code-block"
+              ><code>vehicle = {"reg": "LT19 KFN", "hours": 4}
+rate = 2.75</code></pre>
+              <p class="card-label">Expected output</p>
+              <pre
+                class="code-block code-block--out"
+              ><code>{'reg': 'LT19 KFN', 'hours': 4, 'fee': 11.0}</code></pre>
+              <details class="exercise-hints">
+                <summary>Stuck?</summary>
+                <details>
+                  <summary>The question</summary>
+                  <p>Which value must be worked out before it can be stored?</p>
+                </details>
+                <details>
+                  <summary>The shape</summary>
+                  <p><code>vehicle["____"] = vehicle["____"] * rate</code></p>
+                </details>
+                <details>
+                  <summary>Working answer</summary>
+                  <p>
+                    The new label is <code>"fee"</code>. The stored hours are
+                    multiplied by <code>rate</code>.
+                  </p>
+                </details>
+              </details>
+              <details class="solution">
+                <summary>Show a working answer</summary>
+                <pre
+                  class="code-block"
+                ><code>vehicle["fee"] = vehicle["hours"] * rate
+print(vehicle)</code></pre>
+              </details>
+            </section>
+            <h2 class="section-heading">
+              <span class="section-glyph">✓</span>Gather many vehicles
+            </h2>
+            <section id="exercise-06" class="card">
+              <p class="card-label">Exercise 06</p>
+              <p class="card-label">List of vehicles</p>
+              <p>
+                Build <code>vehicle_one</code>, <code>vehicle_two</code>, and
+                <code>vehicle_three</code>: LT19 KFN, 4 hours; YB70 XCE, 6
+                hours; PK21 RAV, 1 hour. Put them in a list called
+                <code>vehicles</code>. Print the first vehicle’s registration.
+              </p>
+              <p class="card-label">Vehicles keyed by registration</p>
+              <p>
+                Build the same three vehicles in <code>vehicles_by_reg</code>,
+                using each registration as the key. Print the hours for
+                <code>LT19 KFN</code>.
+              </p>
+              <p class="card-label">Expected output</p>
+              <pre class="code-block code-block--out"><code>LT19 KFN
+4</code></pre>
+              <details class="exercise-hints">
+                <summary>Stuck?</summary>
+                <details>
+                  <summary>The question</summary>
+                  <p>
+                    A list uses a number for its position. A dictionary uses the
+                    registration in quotes.
+                  </p>
+                </details>
+                <details>
+                  <summary>The shape</summary>
+                  <p>
+                    <code
+                      >vehicles = [vehicle_one, vehicle_two,
+                      vehicle_three]</code
+                    >
+                  </p>
+                </details>
+                <details>
+                  <summary>Working answer</summary>
+                  <p>
+                    The second structure is a dictionary whose keys are
+                    registrations and whose values are small dictionaries.
+                  </p>
+                </details>
+              </details>
+              <details class="solution">
+                <summary>Show a working answer</summary>
+                <pre
+                  class="code-block"
+                ><code>vehicle_one = {"reg": "LT19 KFN", "hours": 4}
+vehicle_two = {"reg": "YB70 XCE", "hours": 6}
+vehicle_three = {"reg": "PK21 RAV", "hours": 1}
+
+vehicles = [vehicle_one, vehicle_two, vehicle_three]
+print(vehicles[0]["reg"])
+
+vehicles_by_reg = {
+    "LT19 KFN": {"hours": 4},
+    "YB70 XCE": {"hours": 6},
+    "PK21 RAV": {"hours": 1},
+}
+print(vehicles_by_reg["LT19 KFN"]["hours"])</code></pre>
+              </details>
+              <p>
+                Both shapes hold the same vehicles. Sheet 03 navigates them;
+                Sheet 05 loops through them.
+              </p>
+            </section>
+            <h2 class="section-heading">
+              <span class="section-glyph">✓</span>What this unlocks
+            </h2>
+            <div class="card">
+              <pre
+                class="code-block"
+              ><code>vehicles = [vehicle_one, vehicle_two, vehicle_three]</code></pre>
+              <p>
+                You have one list holding three dictionaries. Sheet 03 will show
+                you how to move around inside it.
+              </p>
+            </div>
+            <div class="catalogue-wrap">
+              <table class="catalogue">
+                <thead>
+                  <tr>
+                    <th>If you want</th>
+                    <th>Then</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Several facts travelling together</td>
+                    <td>Build one dictionary with <code>{ }</code></td>
+                  </tr>
+                  <tr>
+                    <td>A new fact inside it</td>
+                    <td>
+                      Put <code>dictionary["label"]</code> on the left of
+                      <code>=</code>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Numbers to behave as numbers</td>
+                    <td>Keep their values unquoted</td>
+                  </tr>
+                  <tr>
+                    <td>Several dictionaries together</td>
+                    <td>Put their names into one list</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <nav class="chapter-nav" aria-label="Next sheet">
+            <a class="chap-next" href="../03-reaching-in/index.html"
+              ><span>Next sheet</span><strong>Sheet 03 — Reaching In</strong></a
+            >
+          </nav>
+        </article>
+        <aside class="workbench" aria-label="Python workbench">
+          <div class="workbench-header">
+            <div>
+              <p class="workbench-label">Python workbench</p>
+              <p class="runner-status">
+                Click the tab that relates to your question.
+              </p>
+              <span
+                id="runner-status"
+                class="visually-hidden"
+                aria-live="polite"
+                >Ready</span
+              >
+            </div>
+            <div class="workbench-actions">
+              <button id="run-code" class="run-button" type="button">
+                Run code <kbd>Ctrl ↵</kbd>
+              </button>
+            </div>
+          </div>
+          <div class="editor-panel">
+            <div
+              id="exercise-strip"
+              class="exercise-strip"
+              aria-label="Choose an exercise"
+            ></div>
+            <textarea
+              id="code-editor"
+              class="code-editor"
+              spellcheck="false"
+            ></textarea>
+          </div>
+          <div class="console-panel">
+            <div class="console-heading">
+              <span>Console</span
+              ><button id="clear-console" type="button">Clear</button>
+            </div>
+            <pre id="console-output" class="console-output" aria-live="polite">
+Choose an exercise, then type your line.</pre>
+          </div>
+          <p class="workbench-help">
+            Choose an exercise to begin again. It replaces the code in the
+            editor.
+          </p>
+        </aside>
+      </div>
+      <footer><p>Supplementary Sheets · Building</p></footer>
+    </main>
+    <script src="../assets/pyodide-runner.js?v=supplementary-sheets-20260729"></script>
+    <script
+      charset="utf-8"
+      src="app.js?v=supplementary-sheets-20260729-navigation-fix"
+    ></script>
+    <script src="../assets/barrier-link.js"></script>
+  </body>
+</html>
