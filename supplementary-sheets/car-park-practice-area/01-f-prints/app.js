@@ -38,8 +38,11 @@ function editorValue() {
 function setEditorValue(value) {
   if (codeMirrorEditor) {
     codeMirrorEditor.setValue(value);
-    const lastLine = codeMirrorEditor.lastLine();
-    codeMirrorEditor.setCursor({ line: lastLine, ch: codeMirrorEditor.getLine(lastLine).length });
+    const codeMirror = editor.CodeMirror;
+    if (codeMirror) {
+      const lastLine = codeMirror.lastLine();
+      codeMirror.setCursor({ line: lastLine, ch: codeMirror.getLine(lastLine).length });
+    }
   } else {
     editor.value = value;
     editor.selectionStart = editor.selectionEnd = value.length;
