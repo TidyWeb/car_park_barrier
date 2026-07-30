@@ -20,7 +20,7 @@ let codeMirrorEditor; let runnerAvailable = false; let currentExercise = "01";
 if (railName) railName.textContent = "Loops";
 function setStatus(message, state = "") { status.textContent = message; status.classList.remove("running", "error"); if (state) status.classList.add(state); }
 function editorValue() { return codeMirrorEditor ? codeMirrorEditor.getValue() : editor.value; }
-function setEditorValue(value) { if (codeMirrorEditor) { codeMirrorEditor.setValue(value); const codeMirror = editor.CodeMirror; if (codeMirror) { const lastLine = codeMirror.lastLine(); codeMirror.setCursor({ line: lastLine, ch: codeMirror.getLine(lastLine).length }); } } else { editor.value = value; editor.selectionStart = editor.selectionEnd = value.length; } }
+function setEditorValue(value) { if (codeMirrorEditor) { codeMirrorEditor.setValue(value); const codeMirror = editor.nextSibling?.CodeMirror; if (codeMirror) { const lastLine = codeMirror.lastLine(); codeMirror.setCursor({ line: lastLine, ch: codeMirror.getLine(lastLine).length }); } } else { editor.value = value; editor.selectionStart = editor.selectionEnd = value.length; } }
 function draftStorageKey(id) { return `supplementary-sheets:${location.pathname}:exercise-${id}`; }
 function readDraft(id) { try { return window.localStorage.getItem(draftStorageKey(id)); } catch { return null; } }
 function saveDraft(id, value) { try { window.localStorage.setItem(draftStorageKey(id), value); } catch { /* Starter code remains available if browser storage cannot be used. */ } }

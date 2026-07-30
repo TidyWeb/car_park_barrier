@@ -38,7 +38,7 @@ function editorValue() {
 function setEditorValue(value) {
   if (codeMirrorEditor) {
     codeMirrorEditor.setValue(value);
-    const codeMirror = editor.CodeMirror;
+    const codeMirror = editor.nextSibling?.CodeMirror;
     if (codeMirror) {
       const lastLine = codeMirror.lastLine();
       codeMirror.setCursor({ line: lastLine, ch: codeMirror.getLine(lastLine).length });
