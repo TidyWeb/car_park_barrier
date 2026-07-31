@@ -564,17 +564,40 @@ print(vehicle)</code></pre>
             </h2>
             <section id="exercise-06" class="card">
               <p class="card-label">Exercise 06</p>
-              <p class="card-label">List of vehicles</p>
+              <p class="card-label">A new level: several vehicles</p>
               <p>
-                Build <code>vehicle_one</code>, <code>vehicle_two</code>, and
-                <code>vehicle_three</code>: LT19 KFN, 4 hours; YB70 XCE, 6
-                hours; PK21 RAV, 1 hour. Put them in a list called
-                <code>vehicles</code>. Print the first vehicle’s registration.
+                So far, one dictionary has represented one vehicle. Now we are
+                moving one level outwards: we are practising how to hold
+                several vehicle dictionaries together.
+              </p>
+              <p>
+                A dictionary answers, “What facts belong to this vehicle?” A
+                list answers, “Which vehicles are in the car park?” We will
+                first build three separate vehicle dictionaries, then gather
+                those named dictionaries into a list. The full Car Park Barrier
+                project will need one of these larger structures when it works
+                through several vehicles.
+              </p>
+              <p class="card-label">First: build three individual vehicles</p>
+              <p>
+                Build three separate dictionaries: one in
+                <code>vehicle_one</code>, one in <code>vehicle_two</code>, and
+                one in <code>vehicle_three</code>. Each variable should hold one
+                complete vehicle dictionary: LT19 KFN, 4 hours; YB70 XCE, 6
+                hours; PK21 RAV, 1 hour.
+              </p>
+              <p class="card-label">Then: gather them into a list</p>
+              <p>
+                Now gather those three named dictionaries into a list called
+                <code>vehicles</code>. Put the variable names in the list; do
+                not build three new dictionary literals at this stage. Print
+                the first vehicle’s registration.
               </p>
               <p class="card-label">Vehicles keyed by registration</p>
               <p>
-                Build the same three vehicles in <code>vehicles_by_reg</code>,
-                using each registration as the key. Print the hours for
+                Finally, build the second shape in
+                <code>vehicles_by_reg</code>: use each registration as the
+                outside key and store its hours inside. Print the hours for
                 <code>LT19 KFN</code>.
               </p>
               <p class="card-label">Expected output</p>
@@ -585,24 +608,33 @@ print(vehicle)</code></pre>
                 <details>
                   <summary>The question</summary>
                   <p>
-                    A list uses a number for its position. A dictionary uses the
-                    registration in quotes.
+                    Build each vehicle dictionary first. Then ask: “What larger
+                    container should hold these three complete vehicles?”
                   </p>
                 </details>
                 <details>
                   <summary>The shape</summary>
                   <p>
-                    <code
-                      >vehicles = [vehicle_one, vehicle_two,
-                      vehicle_three]</code
+                    <code>vehicle_one = {"reg": "...", "hours": ...}</code
+                    ><br />
+                    <code>vehicle_two = {"reg": "...", "hours": ...}</code
+                    ><br />
+                    <code>vehicle_three = {"reg": "...", "hours": ...}</code
                     >
+                  </p>
+                  <p>
+                    After those three lines, gather the named dictionaries:
+                    <code>vehicles = [vehicle_one, vehicle_two,
+                    vehicle_three]</code>
                   </p>
                 </details>
                 <details>
                   <summary>Working answer</summary>
                   <p>
-                    The second structure is a dictionary whose keys are
-                    registrations and whose values are small dictionaries.
+                    The three variables hold the individual dictionaries. The
+                    list holds those variables. In the second structure, the
+                    registration moves to the outside as the key, so the
+                    lookup begins with <code>vehicles_by_reg["LT19 KFN"]</code>.
                   </p>
                 </details>
               </details>
