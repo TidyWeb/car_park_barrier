@@ -7,7 +7,7 @@ const EXERCISES = [
   { id: "02", code: VEHICLES, rest: "Print the three requested values for Exercise 02." },
   { id: "03", code: VEHICLES, rest: "Print the second vehicle's registration, hours, then the whole vehicle." },
   { id: "04", code: VEHICLES, rest: "Give the second vehicle a name, then print its registration and hours in one print command." },
-  { id: "05", code: 'vehicles = [\n    {"reg": "LT19 KFN", "hours": 4},\n    {"reg": "YB70 XCE", "hours": 6},\n    {"reg": "PK21 RAV", "hours": 1},\n]\n', rest: "Work out what LT19 KFN owes from each of the two supplied shapes." },
+  { id: "05", code: 'vehicles = [\n    {"reg": "LT19 KFN", "hours": 4},\n    {"reg": "YB70 XCE", "hours": 6},\n    {"reg": "PK21 RAV", "hours": 1},\n]\n\nvehicles_by_reg = {\n    "LT19 KFN": {"hours": 4},\n    "YB70 XCE": {"hours": 6},\n    "PK21 RAV": {"hours": 1},\n}\n', rest: "Work out what LT19 KFN owes from each of the two supplied shapes." },
   { id: "06", code: `${VEHICLES}\n# Remove the # from one line at a time, then run it.\n# print(vehicles[5])\n# print(vehicles[0]["registration"])\n# print(vehicles[0]["reg"]["hours"])\n# print(vehicles["0"])`, rest: "Try one broken reach at a time for Exercise 06." },
   { id: "07", code: 'customer = {\n    "name": "Marjorie",\n    "basket": {"apples": 4, "pears": 2},\n    "recent_visits": ["Monday", "Thursday"],\n}\n', rest: "Print the requested facts for Exercise 07." },
 ];
