@@ -403,21 +403,20 @@ print(vehicles[1]["reg"])</code></pre>
             </section>
 
             <h2 class="section-heading">
-              <span class="section-glyph">✱</span>The same vehicle, three times
-              over
+              <span class="section-glyph">✱</span>The same vehicle, three ways
             </h2>
             <section id="exercise-03" class="card">
               <p class="card-label">Exercise 03</p>
               <p>
-                Same reach, the same two facts, one vehicle. Type the full
-                address each time.
+                Same reach, the same vehicle, three different things to
+                retrieve. Type the full address each time.
               </p>
               <p>
-                This one is the repetitive one. Rather than typing all three
-                lines and then running, type one print line, hit Run, and look
-                at what comes back. Check it against the expected output. If it
-                is wrong, you know exactly which line caused it. Then type the
-                next one.
+                This one repeats the same route on purpose. Rather than typing
+                all three lines and then running, type one print line, hit Run,
+                and look at what comes back. Check it against the expected
+                output. If it is wrong, you know exactly which line caused it.
+                Then type the next one.
               </p>
               <p>
                 Finding a mistake on the line that made it is far easier than
@@ -425,8 +424,8 @@ print(vehicles[1]["reg"])</code></pre>
               </p>
               <p>
                 Use three <code>print</code> commands to print the second
-                vehicle’s registration, hours, then registration again, each on
-                its own line.
+                vehicle’s registration, its hours, then the whole second
+                vehicle, each on its own line.
               </p>
               <p class="card-label">Given</p>
               <pre class="code-block"><code>vehicles = [
@@ -437,12 +436,12 @@ print(vehicles[1]["reg"])</code></pre>
               <p class="card-label">Expected output</p>
               <pre class="code-block code-block--out"><code>YB70 XCE
 6
-YB70 XCE</code></pre>
+{'reg': 'YB70 XCE', 'hours': 6}</code></pre>
               <details class="solution">
                 <summary>Show a working answer</summary>
                 <pre class="code-block"><code>print(vehicles[1]["reg"])
 print(vehicles[1]["hours"])
-print(vehicles[1]["reg"])</code></pre>
+print(vehicles[1])</code></pre>
               </details>
             </section>
 
