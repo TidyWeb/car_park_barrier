@@ -130,26 +130,22 @@ footer .tidy img{object-fit:contain;background:#fff;padding:.2rem}
 .rail-tidy img{background:none;padding:0;border-radius:0;width:2.9rem;height:2.9rem}
 footer .tidy img{background:none;padding:0;border-radius:0}
 
-/* ---- Car Park Barrier: full-project link in the supplementary rail ---- */
+/* ---- Supplementary-sheets return barrier ---- */
 .rail .rail-tidy{position:absolute;right:1.4rem;bottom:2rem;left:1.4rem;margin-top:0}
-.rail .rail-capstone{display:block;position:relative;min-height:12.5rem;margin-top:auto;margin-bottom:4.7rem;padding:0 .2rem;color:#e6edf0;background:transparent;border:0;text-decoration:none;isolation:isolate}
-.rail .rail-capstone:hover,.rail .rail-capstone:focus-visible{background:transparent}
-.rail .barrier-stage{display:block;position:relative;height:4rem}
-.rail .barrier-post{position:absolute;left:.2rem;bottom:-4.1rem;width:1.25rem;height:3.55rem;border-radius:.16rem .16rem 0 0;background:linear-gradient(90deg,#33424d,#1e2c36 55%,#0d1418);box-shadow:0 2px 6px rgba(0,0,0,.5)}
-.rail .barrier-lamp{position:absolute;z-index:2;left:.35rem;bottom:-.72rem;width:.82rem;height:.82rem;border:1px solid rgba(0,0,0,.55);border-radius:50%;background:#d64b42;box-shadow:0 0 .42rem .08rem rgba(214,75,66,.6),inset 0 0 0 1px rgba(255,255,255,.16);transition:background .2s ease,box-shadow .2s ease}
-.rail .barrier-arm{position:absolute;left:1.08rem;bottom:-1.6rem;width:calc(100% - 1.25rem);height:1rem;transform:rotate(0deg);transform-origin:.38rem 50%;border-radius:.08rem;background:repeating-linear-gradient(45deg,var(--amber) 0 .64rem,#12181d .64rem 1.28rem);box-shadow:inset 0 1px 0 rgba(255,255,255,.28),inset 0 -1px 0 rgba(0,0,0,.4),0 3px 7px rgba(0,0,0,.45);transition:transform 1.68s cubic-bezier(.34,1.32,.64,1)}
-.rail .barrier-arm::before{content:"";position:absolute;left:-.39rem;top:50%;width:.84rem;height:.84rem;margin-top:-.42rem;border-radius:50%;background:radial-gradient(circle at 35% 35%,#687984,#161f26)}
-.rail .barrier-project-label{display:block;width:100%;margin:0 0 1.05rem;color:#8fb9cb;font:800 1.32rem/1.12 var(--mono);letter-spacing:.07em;text-align:center;text-transform:uppercase;white-space:nowrap;transform:translateY(3rem)}
-.rail .barrier-road{display:block;height:8.6rem;overflow:hidden}
-.rail .barrier-road img{display:block;width:100%;height:100%;object-fit:fill}
-.rail .rail-combined{display:block;margin:.55rem .2rem 0;color:#8fb9cb;font:800 1.32rem/1.12 var(--mono);letter-spacing:.07em;text-align:left;text-transform:uppercase;text-decoration:none;white-space:nowrap}
-.rail .rail-combined:hover,.rail .rail-combined:focus-visible{color:#fff;background:transparent}
-.rail .rail-capstone:hover .barrier-lamp,.rail .rail-capstone:focus-visible .barrier-lamp{animation:barrier-amber .72s steps(2,end) infinite}
-.rail .rail-capstone.is-opening .barrier-arm{transform:rotate(-74deg)}
-.rail .rail-capstone.is-opening .barrier-lamp{animation:none;background:#57d97a;box-shadow:0 0 .55rem .12rem rgba(87,217,122,.68),inset 0 0 0 1px rgba(255,255,255,.2)}
-@keyframes barrier-amber{0%,49%{background:#e0a128;box-shadow:0 0 .55rem .1rem rgba(224,161,40,.55),inset 0 0 0 1px rgba(255,255,255,.18)}50%,100%{background:#6b4b18;box-shadow:inset 0 0 0 1px rgba(0,0,0,.55)}}
-@media (prefers-reduced-motion:reduce){.rail .barrier-arm,.rail .barrier-lamp{transition:none}.rail .rail-capstone:hover .barrier-lamp,.rail .rail-capstone:focus-visible .barrier-lamp{animation:none}}
-@media(max-width:1100px){.rail .rail-tidy{position:static;margin-top:1rem}.rail .rail-capstone{margin-bottom:0}}
+.rail .rail-exit{display:block;position:absolute;right:1.4rem;bottom:6.35rem;left:1.4rem;min-height:10.2rem;padding:0 .2rem;border:0;color:#e6edf0;background:transparent;text-decoration:none}
+.rail .rail-exit:hover,.rail .rail-exit:focus-visible{background:transparent}
+.rail .rail-exit .exit-label{display:block;margin:0 0 .75rem;color:#8fb9cb;font:800 1.03rem/1.15 var(--mono);letter-spacing:.04em;text-align:center;text-transform:uppercase;white-space:nowrap;transform:translateY(3rem)}
+.rail .rail-exit .exit-stage{display:block;position:relative;height:3.7rem}
+.rail .rail-exit .exit-post{position:absolute;left:.2rem;bottom:-3.7rem;width:1.18rem;height:3.25rem;border-radius:.16rem .16rem 0 0;background:linear-gradient(90deg,#33424d,#1e2c36 55%,#0d1418);box-shadow:0 2px 6px rgba(0,0,0,.5)}
+.rail .rail-exit .exit-lamp{position:absolute;z-index:2;left:.34rem;bottom:-.62rem;width:.78rem;height:.78rem;border:1px solid rgba(0,0,0,.55);border-radius:50%;background:#d64b42;box-shadow:0 0 .42rem .08rem rgba(214,75,66,.6),inset 0 0 0 1px rgba(255,255,255,.16);transition:background .2s ease,box-shadow .2s ease}
+.rail .rail-exit .exit-arm{position:absolute;left:1.02rem;bottom:-1.45rem;width:calc(100% - 1.2rem);height:.92rem;transform:rotate(0deg);transform-origin:.36rem 50%;border-radius:.08rem;background:repeating-linear-gradient(45deg,var(--amber) 0 .6rem,#12181d .6rem 1.2rem);box-shadow:inset 0 1px 0 rgba(255,255,255,.28),inset 0 -1px 0 rgba(0,0,0,.4),0 3px 7px rgba(0,0,0,.45);transition:transform .45s cubic-bezier(.34,1.32,.64,1)}
+.rail .rail-exit .exit-arm::before{content:"";position:absolute;left:-.38rem;top:50%;width:.8rem;height:.8rem;margin-top:-.4rem;border-radius:50%;background:radial-gradient(circle at 35% 35%,#687984,#161f26)}
+.rail .rail-exit .exit-road{display:block;height:5.8rem;overflow:hidden;background:url("car-park-exit-road.png") center/100% 100% no-repeat}
+.rail .rail-exit:hover .exit-lamp,.rail .rail-exit:focus-visible .exit-lamp{animation:exit-amber .72s steps(2,end) infinite}
+.rail .rail-exit:hover .exit-arm,.rail .rail-exit:focus-visible .exit-arm{transform:rotate(-12deg)}
+@keyframes exit-amber{0%,49%{background:#e0a128;box-shadow:0 0 .55rem .1rem rgba(224,161,40,.55),inset 0 0 0 1px rgba(255,255,255,.18)}50%,100%{background:#6b4b18;box-shadow:inset 0 0 0 1px rgba(0,0,0,.55)}}
+@media (prefers-reduced-motion:reduce){.rail .rail-exit .exit-arm{transition:none}.rail .rail-exit:hover .exit-lamp,.rail .rail-exit:focus-visible .exit-lamp{animation:none}}
+@media(max-width:1100px){.rail .rail-tidy{position:static;margin-top:1rem}.rail .rail-exit{position:relative;right:auto;bottom:auto;left:auto;margin-top:0}}
 
 /* breathing room around code that introduces a figure */
 .lesson .code-block+p{margin-top:1.3rem}
@@ -161,3 +157,6 @@ footer .tidy img{background:none;padding:0;border-radius:0}
 .author-note .card-label{margin:0 0 .9rem;color:var(--green)}
 .author-note p{font:1.02rem/1.65 var(--serif)}
 .author-note p:last-child{margin-bottom:0;color:var(--green);font-weight:600}
+
+/* Small syntax prompts beneath exercise landmarks. */
+.section-hint{display:flex;justify-content:flex-start;align-items:center;flex-wrap:wrap;gap:.55rem;margin:-.45rem 0 1rem;color:var(--muted);font:700 .68rem/1.2 var(--mono);letter-spacing:.04em;text-transform:lowercase}.section-hint code{padding:.16rem .45rem;border:1px solid #8fb9cb;color:var(--green);background:var(--mint);font:700 .68rem/1.2 var(--mono);letter-spacing:0}.section-hint+*{margin-top:0}

@@ -80,6 +80,16 @@ function clearConsole(message) {
   setStatus("Ready");
 }
 
+function exerciseScrollTarget(id) {
+  const exercise = document.querySelector(`#exercise-${id}`);
+  if (!exercise) return null;
+  let target = exercise.previousElementSibling;
+  while (target && !target.matches("h2.section-heading")) {
+    target = target.previousElementSibling;
+  }
+  return target || exercise;
+}
+
 function selectExercise(id, { scrollToExercise = true } = {}) {
   const exercise = EXERCISES.find((item) => item.id === id);
   if (!exercise) return;
@@ -91,7 +101,7 @@ function selectExercise(id, { scrollToExercise = true } = {}) {
     button.setAttribute("aria-pressed", String(button.dataset.exercise === id));
   });
   codeMirrorEditor?.focus();
-  if (scrollToExercise) document.querySelector(`#exercise-${id}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  if (scrollToExercise) exerciseScrollTarget(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 EXERCISES.forEach((exercise) => {

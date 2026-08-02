@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="A short Python practice sheet using Hold, Decide, Repeat, and Package."
+    />
+    <title>Combined VI — Supplementary Sheet</title>
+    <link rel="stylesheet" href="../assets/drills.css?v=rail-exit-20260802" />
+    <link
+      rel="stylesheet"
+      href="../assets/workbench.css?v=supplementary-sheets-heading-scroll-20260801"
+    />
+    <style>
+      .sheet-pending {
+        display: flex;
+        gap: 0.8rem;
+        align-items: center;
+        padding: 0.64rem 0.4rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        color: #8fa2ad;
+        font-size: 0.84rem;
+      }
+      .sheet-pending span {
+        min-width: 1.35rem;
+        color: #6e8490;
+        font: 700 0.72rem var(--mono);
+      }
+      .exercise-strip {
+        display: flex;
+        overflow-x: auto;
+        background: #0e181e;
+      }
+      .exercise-strip button {
+        min-width: 3.1rem;
+        border: 0;
+        border-right: 1px solid rgba(255, 255, 255, 0.12);
+        padding: 0.7rem 1rem;
+        color: #b9c7cf;
+        background: transparent;
+        font: 0.78rem var(--mono);
+        cursor: pointer;
+      }
+      .exercise-strip button[aria-pressed="true"] {
+        color: #fff;
+        background: #1b333f;
+        box-shadow:
+          inset 0 2px 0 var(--amber),
+          inset 0 -2px 0 rgba(143, 185, 203, 0.35);
+        font-weight: 800;
+      }
+      .exercise-strip button:hover,
+      .exercise-strip button:focus-visible {
+        color: #fff;
+        background: #17242d;
+      }
+      .exercise-strip button[aria-pressed="true"]:hover,
+      .exercise-strip button[aria-pressed="true"]:focus-visible {
+        background: #244451;
+      }
+      .rail .course-nav.hints p code {
+        color: #8fb9cb;
+        background: rgba(143, 185, 203, 0.1);
+      }
+      .solution {
+        margin-top: 1.1rem;
+        padding: 0 1.1rem 1.1rem;
+        border-left: 4px solid var(--green);
+        background: var(--mint);
+      }
+      .solution summary {
+        padding: 0.9rem 0;
+        color: var(--green);
+        font: 800 0.72rem var(--mono);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+      .solution .code-block {
+        margin: 0.25rem 0 0;
+      }
+      .solution .code-block code {
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+      }
+      .exercise-hints {
+        margin-top: 1rem;
+        padding: 0.7rem 1rem;
+        border-left: 4px solid var(--amber);
+        background: var(--paper);
+      }
+      .exercise-hints > summary {
+        color: var(--ink);
+        font: 800 0.72rem var(--mono);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+      .exercise-hints p {
+        margin: 0.5rem 0 0;
+      }
+      .route {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.25rem 0.5rem;
+        font: 800 0.78rem var(--mono);
+        line-height: 1.65;
+        color: var(--ink);
+      }
+      .route-step {
+        white-space: nowrap;
+      }
+      .route-arrow {
+        margin-left: 0.25rem;
+        color: var(--green);
+      }
+      .punctuation {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 0.3rem 0.8rem;
+        font: 700 0.82rem var(--mono);
+      }
+      .punctuation code {
+        color: var(--green);
+      }
+      .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip" href="#sheet">Skip to the sheet</a>
+    <aside class="rail">
+      <div class="brand">
+        <a
+          class="brand-home brand-mark"
+          href="../index.html"
+          aria-label="Combined sheets home"
+          >&#9656;</a
+        >
+        <div>
+          <p class="eyebrow">Python · combined practice</p>
+          <p class="brand-name">Combined Sheets</p>
+        </div>
+      </div>
+      <nav class="course-nav" aria-label="Combined sheets">
+        <p>Sheets</p>
+        <ol>
+          <li>
+            <a href="../06-combination-library/index.html"><span>06</span>Library</a>
+          </li>
+          <li>
+            <a href="../07-combination-allotment/index.html"><span>07</span>Allotment</a>
+          </li>
+          <li>
+            <a href="../08-combination-market/index.html"
+              ><span>08</span>Market</a
+            >
+          </li>
+          <li>
+            <a href="../09-combination-moorings/index.html"
+              ><span>09</span>Moorings</a
+            >
+          </li>
+          <li>
+            <a href="../10-combination-buses/index.html"><span>10</span>Buses</a>
+          </li>
+          <li>
+            <a href="../11-combination-hall/index.html" aria-current="page"><span>11</span>Hall</a>
+          </li>
+        </ol>
+      </nav>
+      <nav class="course-nav hints" aria-label="Loops reference">
+        <p>Reference</p>
+        <details>
+          <summary>One item per pass</summary>
+          <p>
+            The indented lines run once for every item. The loop variable is the
+            one item currently in hand.
+          </p>
+        </details>
+        <details>
+          <summary>Name the two layers</summary>
+          <p>
+            Use a plural name for the collection and a singular name for the
+            loop variable: <code>vehicles</code> and <code>vehicle</code>.
+          </p>
+        </details>
+        <details>
+          <summary>A running total</summary>
+          <p>
+            Set it up before the loop, add to it inside, then read it after the
+            loop.
+          </p>
+        </details>
+        <details>
+          <summary>Keep a pair together</summary>
+          <p>
+            When a value and the item it belongs to change together, replace
+            both in the same <code>if</code>.
+          </p>
+        </details>
+        <details>
+          <summary>A loop inside a loop</summary>
+          <p>
+            The inner loop finishes completely before the outer loop moves to
+            its next item.
+          </p>
+        </details>
+        <details>
+          <summary>One total or many?</summary>
+          <p>
+            A total for every vehicle starts inside the outer loop. A total for
+            all vehicles starts before it.
+          </p>
+        </details>
+      </nav>
+    <a class="rail-exit" href="../../supplementary-sheets/car-park-practice-area/" aria-label="Open Supplementary Sheets">
+      <span class="exit-label">Supplementary sheets</span>
+      <span class="exit-stage" aria-hidden="true"><span class="exit-post"></span><span class="exit-lamp"></span><span class="exit-arm"></span></span>
+      <span class="exit-road" aria-hidden="true"></span>
+    </a>
+      <a
+        class="rail-tidy"
+        href="https://github.com/TidyWeb"
+        target="_blank"
+        rel="noopener"
+        ><img src="../assets/tidyweb_logo.png" alt="" /><span
+          ><strong>TidyWeb</strong
+          ><small>View this project on GitHub</small></span
+        ></a
+      >
+    </aside>
+    <main>
+      <div class="shell">
+        <article id="sheet" class="drill-reading">
+          <section class="lesson">
+            <div class="lesson-head">
+              <div class="brand-mark" aria-hidden="true">↻</div>
+              <div>
+                <p class="lesson-no">SHEET 11 · COMBINED</p>
+                <h1 class="intro-title">
+                  <span>Stopping</span><em>as soon as you find it</em>
+                </h1>
+              </div>
+            </div>
+            <div class="card">
+              <p class="card-label">The map</p>
+              <div
+                class="route"
+                aria-label="reach in, ask a question, work something out, then the whole shelf"
+              >
+                <span class="route-step"
+                  >reach in<span class="route-arrow" aria-hidden="true"
+                    >→</span
+                  ></span
+                ><span class="route-step"
+                  >ask a question<span class="route-arrow" aria-hidden="true"
+                    >→</span
+                  ></span
+                ><span class="route-step"
+                  >work something out<span class="route-arrow" aria-hidden="true"
+                    >→</span
+                  ></span
+                ><span class="route-step">the whole shelf</span>
+              </div>
+              <p>Each exercise stands alone. Stop anywhere and return later.</p>
+            </div>
+
+            <h2 class="section-heading">
+              <span class="section-glyph">▸</span>Find your way around
+            </h2>
+            <p class="section-hint">
+              <code>index</code><code>key</code><code>print</code>
+            </p>
+            <section id="exercise-01" class="card">
+              <p class="card-label">Exercise 01</p>
+              <p>
+                Five groups have booked the village hall this week. Each
+                booking is a dictionary and all five sit inside a list. Hours
+                is how long the group has the hall for.
+              </p>
+              <p class="card-label">Given</p>
+              <pre class="code-block"><code>bookings = [
+    {"group": "Yoga Group", "hours": 2, "confirmed": True},
+    {"group": "Am-Dram Society", "hours": 3, "confirmed": False},
+    {"group": "Parish Council", "hours": 1, "confirmed": True},
+    {"group": "Toddler Group", "hours": 2, "confirmed": True},
+    {"group": "Book Club", "hours": 4, "confirmed": False},
+]</code></pre>
+              <p>
+                Print the group on the third booking, then the hours for that
+                same booking, then the hours for the last one. Three lines of
+                output.
+              </p>
+              <p class="card-label">Expected output</p>
+              <pre class="code-block code-block--out"><code>Parish Council
+1
+4</code></pre>
+              <details class="exercise-hints">
+                <summary>Stuck?</summary>
+                <p>
+                  The first bracket picks a booking out of the list by its
+                  number. The second asks that booking for one of its fields
+                  by name. Counting starts at nought.
+                </p>
+              </details>
+            </section>
+
+            <h2 class="section-heading">
+              <span class="section-glyph">▸</span>Reach in for one booking
+            </h2>
+            <p class="section-hint">
+              <code>index</code><code>key</code><code>if</code><code>else</code><code>print</code>
+            </p>
+            <section id="exercise-02" class="card">
+              <p class="card-label">Exercise 02</p>
+              <p>
+                Unconfirmed bookings can still be bumped, so the caretaker
+                needs to know which ones those are.
+              </p>
+              <p>
+                Reach in for the Parish Council booking and print one sentence
+                or the other, depending on what you find.
+              </p>
+              <p class="card-label">Expected output</p>
+              <pre class="code-block code-block--out"><code>Parish Council is confirmed.</code></pre>
+              <details class="exercise-hints">
+                <summary>Stuck?</summary>
+                <p>
+                  The value stored under <code>"confirmed"</code> is already
+                  True or False. An <code>if</code> can test it as it stands,
+                  and the <code>else</code> catches everything it does not.
+                </p>
+              </details>
+            </section>
+
+            <h2 class="section-heading">
+              <span class="section-glyph">▸</span>Reach in and do something with one booking
+            </h2>
+            <p class="section-hint">
+              <code>index</code><code>key</code><code>var</code><code>if</code><code>print</code>
+            </p>
+            <section id="exercise-03" class="card">
+              <p class="card-label">Exercise 03</p>
+              <p>
+                The hall costs £18 for every hour booked. Unconfirmed
+                bookings carry a £15 holding deposit on top.
+              </p>
+              <p>
+                Work out what the Am-Dram Society owes and print the number on
+                its own. No sentence yet.
+              </p>
+              <p class="card-label">Expected output</p>
+              <pre class="code-block code-block--out"><code>69</code></pre>
+              <p>
+                Nothing in the data holds the amount owed. It does not exist
+                until you work it out.
+              </p>
+              <details class="exercise-hints">
+                <summary>Stuck?</summary>
+                <p>
+                  Work out the hourly charge first and put it in a variable of
+                  its own. The deposit is a separate decision made afterwards,
+                  and it only ever adds.
+                </p>
+              </details>
+            </section>
+
+            <h2 class="section-heading">
+              <span class="section-glyph">▸</span>Reach in and do something with the whole week
+            </h2>
+            <p class="section-hint">
+              <code>for</code><code>if</code><code>break</code><code>print</code>
+            </p>
+            <section id="exercise-04" class="card">
+              <p class="card-label">Exercise 04</p>
+              <p>
+                The caretaker only needs to chase one group — whichever one is
+                unconfirmed and comes first in the list. There's no need to
+                look at anything after it.
+              </p>
+              <p>
+                Loop through the bookings. As soon as you find one where
+                <code>"confirmed"</code> is False, print its group name and
+                stop the loop there. Nothing after that point should run.
+              </p>
+              <p>
+                Here, “stop the loop” means leave the current loop as soon as
+                the first match is found. It does not stop the whole program.
+              </p>
+              <p class="card-label">Expected output</p>
+              <pre class="code-block code-block--out"><code>Am-Dram Society</code></pre>
+              <details class="exercise-hints">
+                <summary>Stuck?</summary>
+                <p>
+                  The requirement is the first matching booking, not the last.
+                  Look for the loop-control word that leaves the current loop
+                  once the match has been printed.
+                </p>
+              </details>
+              <details class="exercise-hints">
+                <summary>Still stuck?</summary>
+                <p>
+                  Book Club is unconfirmed too, but it comes later. If your
+                  program reports Book Club, the loop did not stop early
+                  enough.
+                </p>
+              </details>
+            </section>
+          </section>
+          <div class="catalogue-wrap">
+            <table class="catalogue">
+              <thead>
+                <tr>
+                  <th>If you need</th>
+                  <th>Then</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>One action for every item</td>
+                  <td>Use <code>for singular in plural:</code></td>
+                </tr>
+                <tr>
+                  <td>One answer from every item</td>
+                  <td>Put the <code>if</code> inside the loop</td>
+                </tr>
+                <tr>
+                  <td>One total across the collection</td>
+                  <td>Start it before the loop</td>
+                </tr>
+                <tr>
+                  <td>One total for every item</td>
+                  <td>Start it inside the outer loop</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+        <aside class="workbench" aria-label="Python workbench">
+          <div class="workbench-header">
+            <div>
+              <p class="workbench-label">Python workbench</p>
+              <p class="runner-status">
+                Click the tab that relates to your question.
+              </p>
+              <span
+                id="runner-status"
+                class="visually-hidden"
+                aria-live="polite"
+                >Ready</span
+              >
+            </div>
+            <div class="workbench-actions">
+              <button id="run-code" class="run-button" type="button">
+                Run code <kbd>Ctrl ↵</kbd>
+              </button>
+            </div>
+          </div>
+          <div class="editor-panel">
+            <div
+              id="exercise-strip"
+              class="exercise-strip"
+              aria-label="Choose an exercise"
+            ></div>
+            <textarea
+              id="code-editor"
+              class="code-editor"
+              spellcheck="false"
+            ></textarea>
+          </div>
+          <div class="console-panel">
+            <div class="console-heading">
+              <span>Console</span
+              ><button id="clear-console" type="button">Clear</button>
+            </div>
+            <pre id="console-output" class="console-output" aria-live="polite">
+Choose an exercise, then type your line.</pre>
+          </div>
+          <p class="workbench-help">
+            Choose an exercise to begin again. It replaces the code in the
+            editor.
+          </p>
+        </aside>
+      </div>
+      <footer><p>Supplementary Sheets · Combined VI</p></footer>
+    </main>
+    <script src="../assets/pyodide-runner.js?v=supplementary-sheets-20260729"></script>
+    <script src="app.js?v=combination-hall-heading-scroll-20260801"></script>
+    <script src="../assets/barrier-link.js"></script>
+  </body>
+</html>

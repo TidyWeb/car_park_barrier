@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="A short Python practice sheet using Hold, Decide, Repeat, and Package."
+    />
+    <title>Combined — Supplementary Sheet</title>
+    <link rel="stylesheet" href="../assets/drills.css?v=rail-exit-20260802" />
+    <link
+      rel="stylesheet"
+      href="../assets/workbench.css?v=supplementary-sheets-heading-scroll-20260801"
+    />
+    <style>
+      .sheet-pending {
+        display: flex;
+        gap: 0.8rem;
+        align-items: center;
+        padding: 0.64rem 0.4rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        color: #8fa2ad;
+        font-size: 0.84rem;
+      }
+      .sheet-pending span {
+        min-width: 1.35rem;
+        color: #6e8490;
+        font: 700 0.72rem var(--mono);
+      }
+      .exercise-strip {
+        display: flex;
+        overflow-x: auto;
+        background: #0e181e;
+      }
+      .exercise-strip button {
+        min-width: 3.1rem;
+        border: 0;
+        border-right: 1px solid rgba(255, 255, 255, 0.12);
+        padding: 0.7rem 1rem;
+        color: #b9c7cf;
+        background: transparent;
+        font: 0.78rem var(--mono);
+        cursor: pointer;
+      }
+      .exercise-strip button[aria-pressed="true"] {
+        color: #fff;
+        background: #1b333f;
+        box-shadow:
+          inset 0 2px 0 var(--amber),
+          inset 0 -2px 0 rgba(143, 185, 203, 0.35);
+        font-weight: 800;
+      }
+      .exercise-strip button:hover,
+      .exercise-strip button:focus-visible {
+        color: #fff;
+        background: #17242d;
+      }
+      .exercise-strip button[aria-pressed="true"]:hover,
+      .exercise-strip button[aria-pressed="true"]:focus-visible {
+        background: #244451;
+      }
+      .rail .course-nav.hints p code {
+        color: #8fb9cb;
+        background: rgba(143, 185, 203, 0.1);
+      }
+      .solution {
+        margin-top: 1.1rem;
+        padding: 0 1.1rem 1.1rem;
+        border-left: 4px solid var(--green);
+        background: var(--mint);
+      }
+      .solution summary {
+        padding: 0.9rem 0;
+        color: var(--green);
+        font: 800 0.72rem var(--mono);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+      .solution .code-block {
+        margin: 0.25rem 0 0;
+      }
+      .solution .code-block code {
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+      }
+      .exercise-hints {
+        margin-top: 1rem;
+        padding: 0.7rem 1rem;
+        border-left: 4px solid var(--amber);
+        background: var(--paper);
+      }
+      .exercise-hints > summary {
+        color: var(--ink);
+        font: 800 0.72rem var(--mono);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+      .exercise-hints p {
+        margin: 0.5rem 0 0;
+      }
+      .route {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.25rem 0.5rem;
+        font: 800 0.78rem var(--mono);
+        line-height: 1.65;
+        color: var(--ink);
+      }
+      .route-step {
+        white-space: nowrap;
+      }
+      .route-arrow {
+        margin-left: 0.25rem;
+        color: var(--green);
+      }
+      .punctuation {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 0.3rem 0.8rem;
+        font: 700 0.82rem var(--mono);
+      }
+      .punctuation code {
+        color: var(--green);
+      }
+      .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip" href="#sheet">Skip to the sheet</a>
+    <aside class="rail">
+      <div class="brand">
+        <a
+          class="brand-home brand-mark"
+          href="../index.html"
+          aria-label="Combined sheets home"
+          >&#9656;</a
+        >
+        <div>
+          <p class="eyebrow">Python · combined practice</p>
+          <p class="brand-name">Combined Sheets</p>
+        </div>
+      </div>
+      <nav class="course-nav" aria-label="Combined sheets">
+        <p>Sheets</p>
+        <ol>
+          <li>
+            <a href="../06-combination-library/index.html" aria-current="page"><span>06</span>Library</a>
+          </li>
+          <li>
+            <a href="../07-combination-allotment/index.html"><span>07</span>Allotment</a>
+          </li>
+          <li>
+            <a href="../08-combination-market/index.html"
+              ><span>08</span>Market</a
+            >
+          </li>
+          <li>
+            <a href="../09-combination-moorings/index.html"
+              ><span>09</span>Moorings</a
+            >
+          </li>
+          <li>
+            <a href="../10-combination-buses/index.html"><span>10</span>Buses</a>
+          </li>
+          <li>
+            <a href="../11-combination-hall/index.html"><span>11</span>Hall</a>
+          </li>
+        </ol>
+      </nav>
+      <nav class="course-nav hints" aria-label="Loops reference">
+        <p>Reference</p>
+        <details>
+          <summary>One item per pass</summary>
+          <p>
+            The indented lines run once for every item. The loop variable is the
+            one item currently in hand.
+          </p>
+        </details>
+        <details>
+          <summary>Name the two layers</summary>
+          <p>
+            Use a plural name for the collection and a singular name for the
+            loop variable: <code>vehicles</code> and <code>vehicle</code>.
+          </p>
+        </details>
+        <details>
+          <summary>A running total</summary>
+          <p>
+            Set it up before the loop, add to it inside, then read it after the
+            loop.
+          </p>
+        </details>
+        <details>
+          <summary>Keep a pair together</summary>
+          <p>
+            When a value and the item it belongs to change together, replace
+            both in the same <code>if</code>.
+          </p>
+        </details>
+        <details>
+          <summary>A loop inside a loop</summary>
+          <p>
+            The inner loop finishes completely before the outer loop moves to
+            its next item.
+          </p>
+        </details>
+        <details>
+          <summary>One total or many?</summary>
+          <p>
+            A total for every vehicle starts inside the outer loop. A total for
+            all vehicles starts before it.
+          </p>
+        </details>
+      </nav>
+    <a class="rail-exit" href="../../supplementary-sheets/car-park-practice-area/" aria-label="Open Supplementary Sheets">
+      <span class="exit-label">Supplementary sheets</span>
+      <span class="exit-stage" aria-hidden="true"><span class="exit-post"></span><span class="exit-lamp"></span><span class="exit-arm"></span></span>
+      <span class="exit-road" aria-hidden="true"></span>
+    </a>
+      <a
+        class="rail-tidy"
+        href="https://github.com/TidyWeb"
+        target="_blank"
+        rel="noopener"
+        ><img src="../assets/tidyweb_logo.png" alt="" /><span
+          ><strong>TidyWeb</strong
+          ><small>View this project on GitHub</small></span
+        ></a
+      >
+    </aside>
+    <main>
+      <div class="shell">
+        <article id="sheet" class="drill-reading">
+          <section class="lesson">
+            <div class="lesson-head">
+              <div class="brand-mark" aria-hidden="true">↻</div>
+              <div>
+                <p class="lesson-no">SHEET 06 · COMBINED</p>
+                <h1 class="intro-title">
+                  <span>Hold, decide, repeat, package</span><em>on one set of facts</em>
+                </h1>
+              </div>
+            </div>
+            <div class="card">
+              <p class="card-label">The map</p>
+              <div
+                class="route"
+                aria-label="reach in, ask a question, work something out, then the whole shelf"
+              >
+                <span class="route-step"
+                  >reach in<span class="route-arrow" aria-hidden="true"
+                    >→</span
+                  ></span
+                ><span class="route-step"
+                  >ask a question<span class="route-arrow" aria-hidden="true"
+                    >→</span
+                  ></span
+                ><span class="route-step"
+                  >work something out<span class="route-arrow" aria-hidden="true"
+                    >→</span
+                  ></span
+                ><span class="route-step">the whole shelf</span>
+              </div>
+              <p>Each exercise stands alone. Stop anywhere and return later.</p>
+            </div>
+
+            <h2 class="section-heading">
+              <span class="section-glyph">▸</span>Find your way around
+            </h2>
+            <p class="section-hint">
+              <code>index</code><code>key</code><code>print</code>
+            </p>
+            <section id="exercise-01" class="card">
+              <p class="card-label">Exercise 01</p>
+              <p>
+                Five books have come back to the library counter. Each one is a
+                dictionary, and all five sit inside a list.
+              </p>
+              <p class="card-label">Given</p>
+              <pre class="code-block"><code>books = [
+    {"title": "Tinker Tailor", "days_late": 3, "reference": False},
+    {"title": "Gray's Anatomy", "days_late": 2, "reference": True},
+    {"title": "The Bell Jar", "days_late": 0, "reference": False},
+    {"title": "Kelly's Directory", "days_late": 5, "reference": True},
+    {"title": "Wisden 1998", "days_late": 0, "reference": False},
+]</code></pre>
+              <p>Print the title of the third book.</p>
+              <p class="card-label">Expected output</p>
+              <pre class="code-block code-block--out"><code>The Bell Jar</code></pre>
+              <details class="exercise-hints">
+                <summary>Stuck?</summary>
+                <p>
+                  Two steps, not one. The first bracket picks a book out of the
+                  list by its number. The second asks that book for one of its
+                  fields by name. Counting starts at nought.
+                </p>
+              </details>
+            </section>
+
+            <h2 class="section-heading">
+              <span class="section-glyph">▸</span>Reach in for one book
+            </h2>
+            <p class="section-hint">
+              <code>index</code><code>key</code><code>if</code><code>else</code><code>print</code>
+            </p>
+            <section id="exercise-02" class="card">
+              <p class="card-label">Exercise 02</p>
+              <p>
+                Reference copies are not supposed to leave the building, so they
+                are treated differently when they come back late.
+              </p>
+              <p>
+                Reach in for Kelly's Directory and print one sentence or the
+                other, depending on what you find.
+              </p>
+              <p class="card-label">Expected output</p>
+              <pre class="code-block code-block--out"><code>Kelly's Directory is a reference copy.</code></pre>
+              <details class="exercise-hints">
+                <summary>Stuck?</summary>
+                <p>
+                  The value stored under <code>"reference"</code> is already
+                  True or False. An <code>if</code> can test it as it stands —
+                  there is nothing to compare it against.
+                </p>
+              </details>
+            </section>
+
+            <h2 class="section-heading">
+              <span class="section-glyph">▸</span>Reach in and do something with one book
+            </h2>
+            <p class="section-hint">
+              <code>index</code><code>key</code><code>var</code><code>if</code><code>print</code>
+            </p>
+
+            <section id="exercise-03" class="card">
+              <p class="card-label">Exercise 03</p>
+              <p>
+                The fine is 20p for every day a book is late. A reference copy
+                is charged twice that.
+              </p>
+              <p>
+                Work out what Kelly's Directory owes and print the number on its
+                own. No sentence yet.
+              </p>
+              <p class="card-label">Expected output</p>
+              <pre class="code-block code-block--out"><code>2.0</code></pre>
+              <p>
+                Nothing in the data holds the fine. It does not exist until you
+                work it out.
+              </p>
+              <details class="exercise-hints">
+                <summary>Stuck?</summary>
+                <p>
+                  Reach in for the days first and put them in a variable of
+                  their own. Then the sum has something short to work with, and
+                  the doubling is a separate decision after it.
+                </p>
+              </details>
+            </section>
+
+            <h2 class="section-heading">
+              <span class="section-glyph">▸</span>Reach in and do something with the whole shelf
+            </h2>
+            <p class="section-hint">
+              <code>var</code><code>for</code><code>if</code><code>f</code><code>:.2f</code><code>print</code>
+            </p>
+            <section id="exercise-04" class="card">
+              <p class="card-label">Exercise 04</p>
+              <p>
+                The counter needs two numbers at the end of the day: what the
+                shelf owes altogether, and how many books came back with nothing
+                to pay.
+              </p>
+              <p>
+                Both come from one pass through the books. Print them in a
+                single sentence, with the money to two decimal places.
+              </p>
+              <p>
+                This is the first formatted-money output in the set. An
+                f-string can show the amount with two digits after the decimal
+                point; <code>:.2f</code> is the format part that asks for that
+                display.
+              </p>
+              <p class="card-label">Expected output</p>
+              <pre class="code-block code-block--out"><code>The shelf owes £3.40. 2 books were returned with nothing to pay.</code></pre>
+              <p>
+                The two numbers grow in different ways. One goes up by the fine.
+                The other goes up by one.
+              </p>
+              <details class="exercise-hints">
+                <summary>Stuck?</summary>
+                <p>
+                  Two running records are needed: the shelf total and the count
+                  of books with nothing to pay. Give both a neutral starting
+                  value before the loop begins.
+                </p>
+              </details>
+              <details class="exercise-hints">
+                <summary>Still stuck?</summary>
+                <p>
+                  For each book, work out its fine first. Then decide whether
+                  that result changes the money total, the no-payment count, or
+                  both. Keep the single sentence after the loop.
+                </p>
+              </details>
+            </section>
+          </section>
+          <div class="catalogue-wrap">
+            <table class="catalogue">
+              <thead>
+                <tr>
+                  <th>If you need</th>
+                  <th>Then</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>One action for every item</td>
+                  <td>Use <code>for singular in plural:</code></td>
+                </tr>
+                <tr>
+                  <td>One answer from every item</td>
+                  <td>Put the <code>if</code> inside the loop</td>
+                </tr>
+                <tr>
+                  <td>One total across the collection</td>
+                  <td>Start it before the loop</td>
+                </tr>
+                <tr>
+                  <td>One total for every item</td>
+                  <td>Start it inside the outer loop</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+        <aside class="workbench" aria-label="Python workbench">
+          <div class="workbench-header">
+            <div>
+              <p class="workbench-label">Python workbench</p>
+              <p class="runner-status">
+                Click the tab that relates to your question.
+              </p>
+              <span
+                id="runner-status"
+                class="visually-hidden"
+                aria-live="polite"
+                >Ready</span
+              >
+            </div>
+            <div class="workbench-actions">
+              <button id="run-code" class="run-button" type="button">
+                Run code <kbd>Ctrl ↵</kbd>
+              </button>
+            </div>
+          </div>
+          <div class="editor-panel">
+            <div
+              id="exercise-strip"
+              class="exercise-strip"
+              aria-label="Choose an exercise"
+            ></div>
+            <textarea
+              id="code-editor"
+              class="code-editor"
+              spellcheck="false"
+            ></textarea>
+          </div>
+          <div class="console-panel">
+            <div class="console-heading">
+              <span>Console</span
+              ><button id="clear-console" type="button">Clear</button>
+            </div>
+            <pre id="console-output" class="console-output" aria-live="polite">
+Choose an exercise, then type your line.</pre>
+          </div>
+          <p class="workbench-help">
+            Choose an exercise to begin again. It replaces the code in the
+            editor.
+          </p>
+        </aside>
+      </div>
+      <footer><p>Supplementary Sheets · Combined</p></footer>
+    </main>
+    <script src="../assets/pyodide-runner.js?v=supplementary-sheets-20260729"></script>
+    <script src="app.js?v=combination-library-heading-scroll-20260801"></script>
+    <script src="../assets/barrier-link.js"></script>
+  </body>
+</html>
